@@ -427,7 +427,53 @@ class Blockly1 extends Component {
               maxScale: 3,
               minScale: 0.2,
               scaleSpeed: 1.2},
-          trashcan: false});
+          trashcan: true});
+
+    function fixFlyoutScaling() {
+      // Fix block scaling
+      const flyoutCanvas = document.querySelector('.blocklyFlyout .blocklyBlockCanvas');
+
+      // Fix background width - use actual flyout dimensions
+      const flyoutBg = document.querySelector('.blocklyFlyoutBackground');
+      const flyoutContainer = document.querySelector('.blocklyFlyout');
+
+      if (flyoutBg && flyoutContainer) {
+        // Get the actual flyout container dimensions
+        const rect = flyoutContainer.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        // Reconstruct the entire path properly
+        const newPath = `M 0,0 h ${width} a 8 8 0 0 1 8 8 v ${height - 16} a 8 8 0 0 1 -8 8 h -${width} z`;
+        flyoutBg.setAttribute('d', newPath);
+      }
+    }
+
+    function interceptFlyoutTransforms() {
+      const targets = [
+        '.blocklyFlyout .blocklyBlockCanvas',
+        '.blocklyFlyout .blocklyBubbleCanvas'
+      ];
+
+      targets.forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+          // Override setAttribute to intercept transform changes
+          const originalSetAttribute = element.setAttribute;
+          element.setAttribute = function(name, value) {
+            if (name === 'transform' && value.includes('scale(')) {
+              // Preserve translate, force scale(1)
+              value = value.replace(/scale\([^)]+\)/g, 'scale(1)');
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
+        }
+      });
+    }
+
+// Call after Blockly initialization
+    interceptFlyoutTransforms();
+
     workspace.addChangeListener(window._BIDE.updateWorkspace);
     var onresize = function(e) {
       // console.log("blocklyResize")
@@ -450,11 +496,14 @@ class Blockly1 extends Component {
       blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
       blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
       Blockly.svgResize(workspace);
+
+      fixFlyoutScaling();
     };
     //window.addEventListener('resize', onresize, false);
     window._BIDE.resize.addCallback(onresize)
     onresize();
     Blockly.svgResize(workspace);
+    fixFlyoutScaling();
   }
   render() {
     var styleDiv = {

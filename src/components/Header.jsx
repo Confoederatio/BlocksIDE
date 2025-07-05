@@ -61,7 +61,7 @@ class Header extends Component {
         <button onClick={this.open}>Open</button>
         <button onClick={this.saveGen}>Save JS Generated</button>
         <button onClick={this.save}>Save JS Editor</button>
-        <span><b> BlocksIDE</b> (Alpha) {version} by Juan Carlos Orozco.</span>
+        <span><b>BlocksIDE</b> (Beta) {version} by Confoederatio (CTD, 2025); forked from Juan Carlos Orozco/BlocksIDE (2017).</span>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 {
   "name": "BlocksIDE",
   "author": "Confoederatio CTD; Juan Carlos Orozco",
-  "version": "0.3.23",
+  "version": "0.1b",
   "homepage": ".",
   "private": true,
   "dependencies": {

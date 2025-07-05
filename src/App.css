@@ -1,22 +1,9 @@
-/* "height: 100vh" may be overspecified */ 
-/*
-html, body {
-  height: 100vh;  
-}
+/* -- Constant Blockly Size -- */
+/*.blocklyFlyout .blocklyBlockCanvas, .blocklyFlyout .blocklyBubbleCanvas {
+    transform: scale(1) !important;
+}*/
 
-#root {
-  height: 100vh;  
-}
-
-.App {
-  height: 100vh;
-}
-
-.Layout1 {
-  height: 100vh;  
-}
-*/
-
+/* -- DEPRECATED -- */
 .Resizer {
     background: #000;
     opacity: .2;
