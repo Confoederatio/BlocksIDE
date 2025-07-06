@@ -3,7 +3,7 @@
 // https://github.com/JC-Orozco/BlocksIDE
 
 import React, { Component } from 'react';
-import './App.css';
+import './css/layout.css';
 import 'react-tabs/style/react-tabs.css';
 import Layout1 from './components/Layout1.jsx';
 import Blockly from './blockly';

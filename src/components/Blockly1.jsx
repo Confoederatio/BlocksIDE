@@ -471,7 +471,7 @@ class Blockly1 extends Component {
       });
     }
 
-// Call after Blockly initialization
+    // Call after Blockly initialization
     interceptFlyoutTransforms();
 
     workspace.addChangeListener(window._BIDE.updateWorkspace);

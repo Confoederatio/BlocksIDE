@@ -44,8 +44,7 @@ class Editor1 extends Component {
   }
   render() {
     var style1 = {
-      //height: "100vh;", // Full screen 
-      height: "300px",
+      height: "100dvh",
       //"min-height": "100vh",
       width: "100%",
       display: "flex",
