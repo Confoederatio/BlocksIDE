@@ -42,7 +42,7 @@ class Header extends Component {
     var reader = new FileReader();
     reader.onload = function(){
       window._BIDE.code = reader.result
-      window._BIDE.JSEditor.setValue(reader.result);
+      window._BIDE.JSWriteEditor.setValue(reader.result);
       
       parseCode(reader.result)
       window._BIDE.code_prev = window._BIDE.code

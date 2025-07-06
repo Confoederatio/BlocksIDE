@@ -1,2 +1,4 @@
-npm run build
+:loop
+call npm run build
 pause
+goto loop

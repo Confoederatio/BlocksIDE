@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './css/layout.css';
 import 'react-tabs/style/react-tabs.css';
-import Layout1 from './components/Layout1.jsx';
+import ScriptManagerEditor from './components/ScriptManagerEditor.jsx';
 import Blockly from './blockly';
 //import Snap from 'snapsvg';
 const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
@@ -53,10 +53,10 @@ class App extends Component {
       let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
       window._BIDE.blockly_code = blockly_code;
       try{
-        window._BIDE.JSGenerated.setValue(blockly_code)
+        window._BIDE.JSReadEditor.setValue(blockly_code)
       }
       catch(e){
-        // JSGenerated not opened yet.
+        // JSReadEditor not opened yet.
       }
     }
 
@@ -68,7 +68,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Layout1 />
+      <ScriptManagerEditor/>
     );
   }
 }
