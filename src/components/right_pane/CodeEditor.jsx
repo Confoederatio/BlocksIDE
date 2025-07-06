@@ -49,14 +49,14 @@ class CodeEditor extends Component {
 
             Selecting a tab can be done by either clicking with the mouse,
             or by using the keyboard tab to give focus then navigating with
-            the arrow keys (right/down to select tab to the right of selected,
+            the arrow keys (right/Fdown to select tab to the right of selected,
             left/up to select tab to the left of selected).
 
             The content of the <Tab/> (this.props.children) will be shown as the label.
           */}
 
           <Tab>JS Editor</Tab>
-          <Tab>JS Generated</Tab>
+          <Tab>JS Generated (Read-only)</Tab>
         </TabList>
 
         {/*
@@ -76,7 +76,6 @@ class CodeEditor extends Component {
           <JSWriteEditor/>
         </TabPanel>
         <TabPanel>
-          <div>Read-only</div>
           <JSReadEditor/>
         </TabPanel>
       </Tabs>

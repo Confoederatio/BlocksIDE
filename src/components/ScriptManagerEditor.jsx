@@ -12,7 +12,7 @@ class ScriptManagerEditor extends Component {
   render() {
     return (
       <div>
-        <SplitPane onChange={this.resize} split="vertical" minSize={250} defaultSize={'50vw'}>
+        <SplitPane onChange={this.resize} split="vertical" minSize={250} defaultSize={'50dvw'}>
           <LeftPane/>
           <RightPane />
         </SplitPane>

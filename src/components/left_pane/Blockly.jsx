@@ -488,6 +488,8 @@ class Blockly extends Component {
     fixFlyoutScaling();
   }
   render() {
+    console.log("Rendering Blockly!");
+
     var styleDiv = {
       width: "100%",
       height: "100%",
@@ -509,6 +511,13 @@ class Blockly extends Component {
         <div id="blocklyDiv" ref={ref => this.blocklyDiv = ref} style={styleBDiv}></div>
       </div>
     );
+  }
+
+  shouldComponentUpdate() {
+    // This component's own DOM is static.
+    // The Blockly library manages the SVG content inside it.
+    // We never want React to re-render this component's div structure.
+    return false;
   }
 }
 
