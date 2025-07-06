@@ -6,15 +6,15 @@ import React, { Component } from 'react';
 import Tabs2 from "./Tabs2.jsx"
 import { parseCode } from '../lib/js2blocks.js';
 
-class Layout1b2 extends Component {
+class RightPane extends Component {
   componentDidMount() {
-    //console.log("Layout1b2")
+    //console.log("RightPane")
   }
   copyEd2_Ed1(){
     //console.log("copyEd2_Ed1")
    
    window._BIDE.code = window._BIDE.blockly_code;
-    window._BIDE.editor1.setValue(window._BIDE.code);
+    window._BIDE.JSEditor.setValue(window._BIDE.code);
  
     parseCode(window._BIDE.code)
     window._BIDE.code_prev = window._BIDE.code;
@@ -53,4 +53,4 @@ class Layout1b2 extends Component {
   }
 }
 
-export default Layout1b2;
+export default RightPane;

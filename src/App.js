@@ -50,17 +50,14 @@ class App extends Component {
     window._BIDE.updateWorkspace = function(e){
       let Blockly = window.Blockly
       console.log("updateWorkspace");
-      // Set this on a getCode function
-      //if(!window._BIDE.b2c_error){
-        let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
-        window._BIDE.blockly_code = blockly_code;
-        try{
-          window._BIDE.editor2.setValue(blockly_code)
-        }
-        catch(e){
-          // editor2 not opened yet.
-        }
-      //}
+      let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
+      window._BIDE.blockly_code = blockly_code;
+      try{
+        window._BIDE.JSGenerated.setValue(blockly_code)
+      }
+      catch(e){
+        // JSGenerated not opened yet.
+      }
     }
 
   }

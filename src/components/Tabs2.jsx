@@ -4,8 +4,8 @@
 
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Editor1 from './Editor1.jsx'
-import Editor2 from './Editor2.jsx'
+import JSEditor from './JSEditor.jsx'
+import JSGenerated from './JSGenerated.jsx'
 
 //class TabTemplate extends React.Component {
 //    render() {
@@ -21,26 +21,8 @@ import Editor2 from './Editor2.jsx'
 class Tabs2 extends Component {
   constructor() {
     super();
-    //tabs1_this = this;
     this.state = { tabIndex: 0 };
   }
-  
-//  get styles() {
-//        return {
-//            root: {
-//                flex: '1 1 100%',
-//                minHeight: 0,
-//                display: 'flex',
-//                flexDirection: 'column'
-//            },
-//            container: {
-//                flex: '1 1 100%;',
-//                display: 'flex',
-//                flexDirection: 'column',
-//                overflowY: 'auto'
-//            }
-//        };
-//    }
   
   handleSelect(index, last) {
     console.log('Selected tab: ' + index + ', Last tab: ' + last);
@@ -49,7 +31,7 @@ class Tabs2 extends Component {
   }
   render() {
     return (
-      <Tabs onSelect={this.handleSelect.bind(this)}
+      <Tabs onSelect = {this.handleSelect.bind(this)}
         //style={this.styles.root}
         //contentContainerStyle={this.styles.container}
         //tabTemplate={TabTemplate}
@@ -91,11 +73,11 @@ class Tabs2 extends Component {
         */}
 
         <TabPanel>
-          <Editor1 />
+          <JSEditor/>
         </TabPanel>
         <TabPanel>
-          <div>Read Only</div>
-          <Editor2 />
+          <div>Read-only</div>
+          <JSGenerated/>
         </TabPanel>
       </Tabs>
     );

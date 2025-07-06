@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import SplitPane from "react-split-pane";
-import Blockly1 from './Blockly1.jsx';
+import Blockly from './left_pane/Blockly.jsx';
 
 class Split1a extends Component {
   resize() {
@@ -21,7 +21,7 @@ class Split1a extends Component {
   render() {
     return (
       <SplitPane onChange={this.resize} split="horizontal" minSize={300} defaultSize={'75vh'}>
-        <Blockly1 />
+        <Blockly />
         <div>
           <div>
             <span>console1:</span>

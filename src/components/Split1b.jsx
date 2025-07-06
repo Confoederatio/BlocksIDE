@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import SplitPane from "react-split-pane";
-import Layout1b2 from "./Layout1b2.jsx"
+import RightPane from "./RightPane.jsx"
 
 class Split1b extends Component {
   resize() {
@@ -18,7 +18,7 @@ class Split1b extends Component {
   render() {
     return (
       <SplitPane onChange={this.resize} split="horizontal" minSize={150} defaultSize={'100vh'}>
-        <Layout1b2 />
+        <RightPane />
       </SplitPane>
     );
   }
