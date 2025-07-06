@@ -380,7 +380,7 @@ class Blockly extends Component {
       </category>
   
   
-      <category name="Advanced js" colour="90">
+      <category name="Other" colour="90">
         <block type="bi_try_catch"></block>      
         <block type="bi_catch"></block>      
         <block type="bi_export"></block>
