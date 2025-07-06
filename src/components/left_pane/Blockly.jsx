@@ -400,7 +400,6 @@ class Blockly extends Component {
     </xml>`;
 
     var blocklyContainer = this.blocklyContainer; //document.getElementById('blocklyContainer');
-    var blocklyArea = this.blocklyArea; //document.getElementById('blocklyArea');
     var blocklyDiv = this.blocklyDiv; //document.getElementById('blocklyDiv');
     var workspace = Blockly.inject(blocklyDiv,
         { toolbox: toolbox,
@@ -463,8 +462,8 @@ class Blockly extends Component {
       // console.log("blocklyResize")
       // Compute the absolute coordinates and dimensions of blocklyArea.
       //var element = blocklyArea;
-      // JCOA: Force blocklyArea to 100% height of container 
-      blocklyArea.style.height = blocklyContainer.offsetHeight + 'px';
+      // JCOA: Force blocklyArea to 100% height of container
+      //blocklyArea.style.height = blocklyContainer.offsetHeight + 'px';
       
       // JCOA: We are not requiring this maybe react is solving this offset
       //      var x = 0;
@@ -476,9 +475,8 @@ class Blockly extends Component {
       //      } while (element);
       // Position blocklyDiv over blocklyArea.
       blocklyDiv.style.left = '0px' // x + 'px';
-      blocklyDiv.style.top = '0px' // y + 'px';
-      blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-      blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+      blocklyDiv.style.width = "100%"
+      blocklyDiv.style.height = "calc(100% - " + document.getElementById("topbar").offsetHeight + "px)";
       Blockly.svgResize(workspace);
 
       fixFlyoutScaling();
@@ -505,9 +503,9 @@ class Blockly extends Component {
     var styleBDiv = {
       position: "absolute"
     }
+    //<div id="blocklyArea" ref={ref => this.blocklyArea = ref} style={styleBArea}></div>
     return(
       <div id="blocklyContainer" ref={ref => this.blocklyContainer = ref} style={styleDiv}>
-        <div id="blocklyArea" ref={ref => this.blocklyArea = ref} style={styleBArea}></div>
         <div id="blocklyDiv" ref={ref => this.blocklyDiv = ref} style={styleBDiv}></div>
       </div>
     );

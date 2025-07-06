@@ -15,5 +15,5 @@ var a = 0
 
 while (a < 3) {
   a += 1
-  console1.logln(a)
+  debugger.logln(a)
 }

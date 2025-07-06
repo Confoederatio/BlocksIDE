@@ -7,7 +7,7 @@ p1.style.width = '300px'
 
 pane1.appendChild(p1)
 
-//console1.log(p1)
+//debugger.log(p1)
 
 //var currentDiv = document.getElementById("svg");
 

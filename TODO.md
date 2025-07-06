@@ -2,7 +2,7 @@ Juan Carlos Orozco TODO list:
 
 Layout:
 Fix layout to avoid overflowing the full page.
-Add scrollbar to console1 pane
+Add scrollbar to debugger pane
 
 - Support comments.
 

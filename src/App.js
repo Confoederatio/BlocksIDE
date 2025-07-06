@@ -35,15 +35,15 @@ class App extends Component {
     _BIDE.blockly_code = ""
     _BIDE.code_prev = ""
     
-    window.console1 = {
+    window.debugger = {
       log: function(msg){
-        if(_BIDE.console1){
-          _BIDE.console1.innerHTML += msg + '<br>' // value += msg + '\n'
+        if(_BIDE.debugger){
+          _BIDE.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
         }
       },
       clear: function(){
-        if(_BIDE.console1){
-          _BIDE.console1.innerHTML = '' // value = ''
+        if(_BIDE.debugger){
+          _BIDE.debugger.innerHTML = '' // value = ''
         }
       }
     }

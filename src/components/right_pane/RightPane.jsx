@@ -20,15 +20,17 @@ class RightPane extends Component {
     window._BIDE.code_prev = window._BIDE.code;
   }
   bi_pane1_clear(){
-    while (window.pane1.firstChild) {
-      window.pane1.removeChild(window.pane1.firstChild);
+    var debugger_el = document.querySelector(`#debugger`);
+
+    while (debugger_el.firstChild) {
+      debugger_el.removeChild(debugger_el.firstChild);
     }
   }
   bi_run(){
     //console.log("bi_run")
     try{
-      //bi_console1_clear();
-      window.console1.clear()
+      //bi_debugger_clear();
+      window.debugger.clear()
       this.bi_pane1_clear();
       
       // JCOA: Is there a safe eval with debug options?
@@ -36,7 +38,7 @@ class RightPane extends Component {
       eval(window._BIDE.blockly_code)      
     }
     catch(err){
-      //bi_console1.value += err;
+      //bi_debugger.value += err;
       console.log(err)
     }
   }

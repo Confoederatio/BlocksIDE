@@ -1558,7 +1558,7 @@ export function parseCode(code){
   let comments = [];
   let block_loc = [];
   try{
-    //console1.value = '';
+    //debugger.value = '';
     window._BIDE.b2c_error = false
     options = {
       sourceType: 'module',
@@ -1588,7 +1588,7 @@ export function parseCode(code){
     //Blockly.Xml.domToWorkspace(workspace, xml1);
     //workspace.cleanUp_();    //workspace.addChangeListener(window._BIDE.updateWorkspace);
 
-    //console1.value += err+'\n';
+    //debugger.value += err+'\n';
   }
 }
 
