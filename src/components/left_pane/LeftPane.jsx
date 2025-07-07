@@ -43,6 +43,8 @@ class LeftPane extends Component {
   componentDidUpdate (prevProps) {
     if (prevProps.view_mode !== this.props.view_mode)
       setTimeout(() => this.resize(), 0);
+    if (this.props.view_mode != "unified" && this.state.selectedIndex >= 2)
+      this.handleTabSelect(0);
   }
 
   render() {

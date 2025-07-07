@@ -20,6 +20,7 @@ class ScriptManagerEditor extends Component {
       view_mode: "unified" //Either 'split'/'unified'. 'unified' by default.
     };
 
+    //Bizarre fix needed for unified to force reflow for CodeMirror gutters to work.
     if (this.state.view_mode == "unified") {
       this.toggleSplitScreen();
       this.initialise_unified_screen_count = 0;
