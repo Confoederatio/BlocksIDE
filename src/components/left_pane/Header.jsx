@@ -49,6 +49,38 @@ class Header extends Component {
     }
     reader.readAsText(input.files[0]);
   }
+  copyEd2_Ed1(){
+    //console.log("copyEd2_Ed1")
+
+    window._BIDE.code = window._BIDE.blockly_code;
+    window._BIDE.JSWriteEditor.setValue(window._BIDE.code);
+
+    parseCode(window._BIDE.code)
+    window._BIDE.code_prev = window._BIDE.code;
+  }
+  bi_pane1_clear(){
+    var debugger_el = document.querySelector(`#debugger`);
+
+    while (debugger_el.firstChild) {
+      debugger_el.removeChild(debugger_el.firstChild);
+    }
+  }
+  bi_run(){
+    //console.log("bi_run")
+    try{
+      //bi_debugger_clear();
+      window.debugger.clear()
+      this.bi_pane1_clear();
+
+      // JCOA: Is there a safe eval with debug options?
+      // eslint-disable-next-line
+      eval(window._BIDE.blockly_code)
+    }
+    catch(err){
+      //bi_debugger.value += err;
+      console.log(err)
+    }
+  }
   componentDidMount() {
     var openFile = document.getElementById('open-js-file');
     openFile.addEventListener('change', this.openjs, false);
@@ -62,6 +94,8 @@ class Header extends Component {
         <button onClick={this.saveGen}>Save JS Generated</button>
         <button onClick={this.save}>Save JS Editor</button>
         <button onClick = {this.props.toggleSplitScreen} style = {{marginLeft: "8px"}}>Toggle Split-Screen</button>
+        <button onClick={this.copyEd2_Ed1} style = {{marginLeft: "8px"}}>SYNC: JS Editor &lt;- JS Generated</button>
+        <button onClick={this.bi_run.bind(this)}>RUN: JS Generated</button>
       </div>
     );
   }

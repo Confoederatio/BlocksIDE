@@ -64,7 +64,6 @@ class LeftPane extends Component {
 
     return (
       <div className = {`left-pane ${this.props.view_mode} data-selected-${this.state.selectedIndex}`}>
-        <Header toggleSplitScreen = { this.props.toggleSplitScreen }></Header>
         {/* Control the selected tab index directly from our state */}
         <Tabs selectedIndex={this.state.selectedIndex} onSelect={this.handleTabSelect}>
           <TabList>

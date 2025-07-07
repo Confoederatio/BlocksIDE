@@ -71,6 +71,7 @@ class ScriptManagerEditor extends Component {
 
     return (
       <div>
+        <Header toggleSplitScreen = { this.toggleSplitScreen }></Header>
         <SplitPane
           onChange={this.resize}
           split="vertical"

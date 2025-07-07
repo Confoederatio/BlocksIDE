@@ -454,24 +454,9 @@ class Blockly extends Component {
 
     this.workspace.addChangeListener(window._BIDE.updateWorkspace);
     var onresize = (e) => {
-      // console.log("blocklyResize")
-      // Compute the absolute coordinates and dimensions of blocklyArea.
-      //var element = blocklyArea;
-      // JCOA: Force blocklyArea to 100% height of container
-      //blocklyArea.style.height = blocklyContainer.offsetHeight + 'px';
-      
-      // JCOA: We are not requiring this maybe react is solving this offset
-      //      var x = 0;
-      //      var y = 0;
-      //      do {
-      //        x += element.offsetLeft;
-      //        y += element.offsetTop;
-      //        element = element.offsetParent;
-      //      } while (element);
-      // Position blocklyDiv over blocklyArea.
       blocklyDiv.style.left = '0px' // x + 'px';
       blocklyDiv.style.width = "100%"
-      blocklyDiv.style.height = "calc(100% - " + document.getElementById("topbar").offsetHeight + "px)";
+      blocklyDiv.style.height = "calc(100% - " + document.getElementById("topbar").offsetHeight + "px - " + document.querySelector(`.react-tabs`).offsetHeight + "px)";
       Blockly.svgResize(this.workspace);
 
       fixFlyoutScaling();
