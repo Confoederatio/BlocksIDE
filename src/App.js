@@ -31,6 +31,15 @@ class App extends Component {
       _BIDE.resize.callbackList.forEach(function(cb) {
         cb()
       })
+
+      //Refresh CodeMirror editors
+      console.log(`Refreshing CodeMirror editors`);
+      try {
+        window._BIDE.JSReadEditor.refresh();
+      } catch (e) {}
+      try {
+        window._BIDE.JSWriteEditor.refresh();
+      } catch (e) {}
     }
     _BIDE.blockly_code = ""
     _BIDE.code_prev = ""
@@ -59,7 +68,6 @@ class App extends Component {
         // JSReadEditor not opened yet.
       }
     }
-
   }
   componentDidMount() {
     window.addEventListener('resize', window._BIDE.resize.resize, false)

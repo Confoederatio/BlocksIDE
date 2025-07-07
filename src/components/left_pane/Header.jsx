@@ -61,6 +61,7 @@ class Header extends Component {
         <button onClick={this.open}>Open</button>
         <button onClick={this.saveGen}>Save JS Generated</button>
         <button onClick={this.save}>Save JS Editor</button>
+        <button onClick = {this.props.toggleSplitScreen} style = {{marginLeft: "8px"}}>Toggle Split-Screen</button>
       </div>
     );
   }

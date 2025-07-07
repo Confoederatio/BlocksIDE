@@ -27,8 +27,18 @@ class CodeEditor extends Component {
   handleSelect(index, last) {
     console.log('Selected tab: ' + index + ', Last tab: ' + last);
     //tabs1_this.setState({ tabIndex: index });
-    this.setState({ tabIndex: index });
+    this.setState({ tabIndex: index }, () => {
+      this.resize();
+    });
   }
+  resize() {
+    try {
+      window._BIDE.resize.resize();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     return (
       <Tabs onSelect = {this.handleSelect.bind(this)}
@@ -49,7 +59,7 @@ class CodeEditor extends Component {
 
             Selecting a tab can be done by either clicking with the mouse,
             or by using the keyboard tab to give focus then navigating with
-            the arrow keys (right/Fdown to select tab to the right of selected,
+            the arrow keys (right/down to select tab to the right of selected,
             left/up to select tab to the left of selected).
 
             The content of the <Tab/> (this.props.children) will be shown as the label.

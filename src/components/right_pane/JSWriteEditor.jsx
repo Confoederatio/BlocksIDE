@@ -1,7 +1,3 @@
-// Copyright 2016 Juan Carlos Orozco
-// Licensed under the Apache License, Version 2.0 (the "License");
-// https://github.com/JC-Orozco/BlocksIDE
-
 import React, { Component } from 'react';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
@@ -29,6 +25,7 @@ class JSWriteEditor extends Component {
         code: newCode,
     });
     window._BIDE.code = newCode
+
     parseCode(newCode)
     window._BIDE.code_prev = window._BIDE.code;
   }
@@ -61,7 +58,7 @@ class JSWriteEditor extends Component {
       mode: "javascript"
     };
     return (
-      <div style={style1}>
+      <div className = "js-write-editor" style={style1}>
         <CodeMirror style={style2} ref={ref => this.editor = ref} value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
       </div>
     );

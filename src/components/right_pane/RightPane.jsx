@@ -44,7 +44,7 @@ class RightPane extends Component {
   }
   render() {
     return (
-      <div>
+      <div className = {`right-pane ${this.props.view_mode}`}>
         <div>
           <button onClick={this.copyEd2_Ed1}>SYNC: JS Editor &lt;- JS Generated</button>
           <button onClick={this.bi_run.bind(this)}>RUN: JS Generated</button>
