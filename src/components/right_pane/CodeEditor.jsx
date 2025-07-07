@@ -41,12 +41,7 @@ class CodeEditor extends Component {
 
   render() {
     return (
-      <Tabs onSelect = {this.handleSelect.bind(this)}
-        //style={this.styles.root}
-        //contentContainerStyle={this.styles.container}
-        //tabTemplate={TabTemplate}
-        //selectedIndex={2}
-        >
+      <Tabs onSelect = {this.handleSelect.bind(this)}>
 
         {/*
           <TabList/> is a composite component and is the container for the <Tab/>s.

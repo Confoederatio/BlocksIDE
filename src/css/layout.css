@@ -1,6 +1,14 @@
 /* -- Global Layout -- */
+.SplitPane.vertical {
+    height: calc(100dvh - 22px) !important;
+    overflow: hidden !important;
+}
 .Pane.vertical.Pane1:has(.left-pane.unified) {
     width: 100dvw !important;
+}
+.right-pane {
+    height: calc(100dvh - 22px) !important;
+    overflow-y: hidden !important;
 }
 .right-pane.unified {
     display: none;

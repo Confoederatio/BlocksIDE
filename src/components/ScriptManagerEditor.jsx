@@ -70,7 +70,7 @@ class ScriptManagerEditor extends Component {
     };
 
     return (
-      <div>
+      <div className = "script-manager-editor">
         <Header toggleSplitScreen = { this.toggleSplitScreen }></Header>
         <SplitPane
           onChange={this.resize}

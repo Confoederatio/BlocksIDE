@@ -47,7 +47,7 @@ class JSWriteEditor extends Component {
   }
   render() {
     var style1 = {
-      height: `calc(100dvh - ${document.getElementById("topbar").offsetHeight}px - ${document.querySelector(`.react-tabs`).offsetHeight}px)`,
+      height: `100dvh`,
       //"min-height": "100vh",
       width: "100%",
       display: "flex",
