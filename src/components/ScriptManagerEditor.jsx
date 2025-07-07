@@ -17,10 +17,11 @@ class ScriptManagerEditor extends Component {
 
     //Declare local instance variables
     this.state = {
-      view_mode: "unified" //Either 'split'/'unified'. 'unified' by default.
+      view_mode: "split" //Either 'split'/'unified'. 'unified' by default.
     };
 
     //Bizarre fix needed for unified to force reflow for CodeMirror gutters to work.
+    //LeftPane reflow
     if (this.state.view_mode == "unified") {
       this.toggleSplitScreen();
       this.initialise_unified_screen_count = 0;
@@ -54,7 +55,7 @@ class ScriptManagerEditor extends Component {
 
   toggleSplitScreen = () => {
     this.state.view_mode = (this.state.view_mode == "split") ? "unified": "split";
-    this.setState((previous_state) => {
+    this.setState(() => {
       this.resize();
 
       //Return statement

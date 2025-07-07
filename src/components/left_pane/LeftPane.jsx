@@ -24,7 +24,10 @@ class LeftPane extends Component {
         "none" : "block";
 
       //Call resize to redraw
-      setTimeout(() => this.resize(), 0);
+      setTimeout(() => {
+        this.resize();
+        window.Blockly.mainWorkspace.render(); //Re-render Blockly
+      }, 0);
     });
   }
 

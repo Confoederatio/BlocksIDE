@@ -28,16 +28,22 @@ class JSWriteEditor extends Component {
 
     parseCode(newCode)
     window._BIDE.code_prev = window._BIDE.code;
+    console.log(`JSWriteEditor: updateCode()`);
   }
   componentDidMount() {
+    var has_instance = false;
+
     //console.log(walk)
     //console.log(walk.recursive)
     window._BIDE.JSWriteEditor = this.editor.codeMirror;
+    window._BIDE.JSWriteEditors.push(this);
+
     // Check if old code == newCOde do not execute. Save old code
     if(window._BIDE.code_prev !== this.state.code){
       parseCode(this.state.code)
       window._BIDE.code_prev = window._BIDE.code;
     }
+    console.log(`JSWriteEditor: componentDidMount()`);
   }
   render() {
     var style1 = {
@@ -57,9 +63,10 @@ class JSWriteEditor extends Component {
       lineNumbers: true,
       mode: "javascript"
     };
+
     return (
       <div className = "js-write-editor" style={style1}>
-        <CodeMirror style={style2} ref={ref => this.editor = ref} value={this.state.code} onChange={this.updateCode.bind(this)} options={options} />
+        <CodeMirror style={style2} ref={ref => this.editor = ref} value = {window._BIDE.code} onChange={this.updateCode.bind(this)} options={options} />
       </div>
     );
   }

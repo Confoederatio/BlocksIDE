@@ -16,7 +16,10 @@ class App extends Component {
     window.Blockly = Blockly
     window.Snap = Snap
 
-    window._BIDE = {}
+    window._BIDE = {
+      JSReadEditors: [],
+      JSWriteEditors: []
+    }
     let _BIDE = window._BIDE
     _BIDE.b2c_error = false
     _BIDE.code = 'var i=10'
@@ -34,12 +37,32 @@ class App extends Component {
 
       //Refresh CodeMirror editors
       console.log(`Refreshing CodeMirror editors`);
-      try {
-        window._BIDE.JSReadEditor.refresh();
-      } catch (e) {}
-      try {
-        window._BIDE.JSWriteEditor.refresh();
-      } catch (e) {}
+      if (_BIDE.init_finished) {
+        try {
+          window._BIDE.JSReadEditor.refresh();
+        } catch (e) { console.warn(e); }
+        try {
+          window._BIDE.JSWriteEditor.refresh();
+        } catch (e) { console.warn(e); }
+
+        try {
+          if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
+            window._BIDE.JSReadEditor.setValue(window._BIDE.code);
+        } catch (e) {}
+        try {
+          if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
+            for (let i = window._BIDE.JSWriteEditors.length - 1; i >= 0; i--) {
+              let local_editor = window._BIDE.JSWriteEditors[i];
+
+              //Internal guard clause; make sure local_editor.editor actually exists
+              if (!local_editor.editor) {
+                window._BIDE.JSWriteEditors.splice(i, 1);
+                continue;
+              }
+              local_editor.editor.codeMirror.setValue(window._BIDE.code);
+            }
+        } catch (e) {}
+      }
     }
     _BIDE.blockly_code = ""
     _BIDE.code_prev = ""
@@ -68,6 +91,8 @@ class App extends Component {
         // JSReadEditor not opened yet.
       }
     }
+
+    _BIDE.init_finished = true;
   }
   componentDidMount() {
     window.addEventListener('resize', window._BIDE.resize.resize, false)

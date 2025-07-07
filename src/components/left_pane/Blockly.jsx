@@ -9,12 +9,7 @@ import React, { Component } from 'react';
 //var Blockly_this
 class Blockly extends Component {
   componentDidMount() {
-    let Blockly = window.Blockly
-    //    var toolbox = `
-    //      <xml>
-    //        <block type="controls_if"></block>
-    //        <block type="controls_whileUntil"></block>
-    //      </xml>`
+    let Blockly = window.Blockly;
 
     var toolbox = `
       <xml id="toolbox" style="display: none">    
@@ -401,7 +396,7 @@ class Blockly extends Component {
 
     var blocklyContainer = this.blocklyContainer; //document.getElementById('blocklyContainer');
     var blocklyDiv = this.blocklyDiv; //document.getElementById('blocklyDiv');
-    var workspace = Blockly.inject(blocklyDiv,
+    this.workspace = Blockly.inject(blocklyDiv,
         { toolbox: toolbox,
           zoom:
             { controls: true,
@@ -457,8 +452,8 @@ class Blockly extends Component {
     // Call after Blockly initialization
     interceptFlyoutTransforms();
 
-    workspace.addChangeListener(window._BIDE.updateWorkspace);
-    var onresize = function(e) {
+    this.workspace.addChangeListener(window._BIDE.updateWorkspace);
+    var onresize = (e) => {
       // console.log("blocklyResize")
       // Compute the absolute coordinates and dimensions of blocklyArea.
       //var element = blocklyArea;
@@ -477,14 +472,14 @@ class Blockly extends Component {
       blocklyDiv.style.left = '0px' // x + 'px';
       blocklyDiv.style.width = "100%"
       blocklyDiv.style.height = "calc(100% - " + document.getElementById("topbar").offsetHeight + "px)";
-      Blockly.svgResize(workspace);
+      Blockly.svgResize(this.workspace);
 
       fixFlyoutScaling();
     };
     //window.addEventListener('resize', onresize, false);
     window._BIDE.resize.addCallback(onresize)
     onresize();
-    Blockly.svgResize(workspace);
+    Blockly.svgResize(this.workspace);
     fixFlyoutScaling();
   }
   render() {
