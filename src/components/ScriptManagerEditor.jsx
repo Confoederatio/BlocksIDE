@@ -22,9 +22,24 @@ class ScriptManagerEditor extends Component {
 
     if (this.state.view_mode == "unified") {
       this.toggleSplitScreen();
-      setTimeout(() => {
-        this.toggleSplitScreen();
-      }, 50);
+      this.initialise_unified_screen_count = 0;
+      this.initialise_unified_screen_loop = setInterval(() => {
+        var clear_interval = false;
+        this.initialise_unified_screen_count++;
+
+        if (this.state.view_mode == "split") {
+          clear_interval = true;
+          this.toggleSplitScreen();
+        }
+        if (this.initialise_unified_screen_count > 100) {
+          clear_interval = true;
+          console.error(`toggleSplitScreen() initialisation failed.`);
+        }
+        if (clear_interval) {
+          clearInterval(this.initialise_unified_screen_loop);
+          delete this.initialise_unified_screen_count;
+        }
+      }, 0);
     }
   }
 
@@ -37,11 +52,12 @@ class ScriptManagerEditor extends Component {
   }
 
   toggleSplitScreen = () => {
+    this.state.view_mode = (this.state.view_mode == "split") ? "unified": "split";
     this.setState((previous_state) => {
       this.resize();
 
       //Return statement
-      return { view_mode: (previous_state.view_mode == "split") ? "unified": "split" };
+      return { view_mode: this.state.view_mode };
     });
   }
 
