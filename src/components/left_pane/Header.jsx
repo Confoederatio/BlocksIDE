@@ -4,6 +4,7 @@ import { parseCode } from '../../lib/js2blocks.js'
 import { version } from '../../version.json'
 
 class Header extends Component {
+  //ALL THIS STUFF NEEDS TO BE HOISTED TO GLOBAL (window.)
   save() {
     console.log("Save JS Editor")
     var blob = new Blob([window.main.code], {

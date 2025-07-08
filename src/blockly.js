@@ -1,7 +1,3 @@
-// Copyright 2016 Juan Carlos Orozco
-// Licensed under the Apache License, Version 2.0 (the "License");
-// https://github.com/JC-Orozco/BlocksIDE
-
 let Blockly;
 if (typeof window !== 'undefined') {
   Blockly = require('../node_modules/node-blockly/browser-raw.js');

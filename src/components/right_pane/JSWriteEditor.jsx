@@ -42,7 +42,7 @@ class JSWriteEditor extends Component {
 
     return (
       <div className = "js-write-editor" style = {{
-        height: "calc(100vh - 22px)",
+        height: "calc(100vh)",
         width: "100%",
         display: "flex",
         padding: "0px"

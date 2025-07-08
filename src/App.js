@@ -12,54 +12,74 @@ class App extends Component {
     window.Snap = Snap
 
     window.main = {
+      //Component Arrays
       JSReadEditors: [],
-      JSWriteEditors: []
-    }
-    window.main.b2c_error = false
-    window.main.code = 'var i=10'
-    
-    window.main.resize = {}
-    window.main.resize.callbackList = []
-    window.main.resize.addCallback = function(callback){
-        window.main.resize.callbackList.push(callback)  
+      JSWriteEditors: [],
+
+      //Variables (Transpiler)
+      b2c_error: false,
+
+      //Variables (UI)
+      blockly_code: "",
+      code: `var i = 10;`,
+      code_prev: "",
+
+      //KEEP AT BOTTOM! - Functions/Logic
+
+      resize: {
+        callbackList: [],
+        addCallback: function(callback){
+          window.main.resize.callbackList.push(callback)
+        },
+        resize: function () {
+          // console.log("Resize")
+          window.main.resize.callbackList.forEach(function(cb) {
+            cb()
+          })
+
+          //Refresh CodeMirror editors
+          console.log(`Refreshing CodeMirror editors`);
+          if (window.main.init_finished) {
+            try {
+              window.main.JSReadEditor.refresh();
+            } catch (e) { console.warn(e); }
+            try {
+              window.main.JSWriteEditor.refresh();
+            } catch (e) { console.warn(e); }
+
+            try {
+              if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
+                window.main.JSReadEditor.setValue(window.main.code);
+            } catch (e) {}
+            try {
+              if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
+                for (let i = window.main.JSWriteEditors.length - 1; i >= 0; i--) {
+                  let local_editor = window.main.JSWriteEditors[i];
+
+                  //Internal guard clause; make sure local_editor.editor actually exists
+                  if (!local_editor.editor) {
+                    window.main.JSWriteEditors.splice(i, 1);
+                    continue;
+                  }
+                  local_editor.editor.codeMirror.setValue(window.main.code);
+                }
+            } catch (e) {}
+          }
+        }
+      },
+      updateWorkspace: function () {
+        let Blockly = window.Blockly
+        console.log("updateWorkspace");
+        let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
+        window.main.blockly_code = blockly_code;
+        try{
+          window.main.JSReadEditor.setValue(blockly_code)
+        }
+        catch(e){
+          // JSReadEditor not opened yet.
+        }
       }
-    window.main.resize.resize = function(){
-      // console.log("Resize")
-      window.main.resize.callbackList.forEach(function(cb) {
-        cb()
-      })
-
-      //Refresh CodeMirror editors
-      console.log(`Refreshing CodeMirror editors`);
-      if (window.main.init_finished) {
-        try {
-          window.main.JSReadEditor.refresh();
-        } catch (e) { console.warn(e); }
-        try {
-          window.main.JSWriteEditor.refresh();
-        } catch (e) { console.warn(e); }
-
-        try {
-          if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
-            window.main.JSReadEditor.setValue(window.main.code);
-        } catch (e) {}
-        try {
-          if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
-            for (let i = window.main.JSWriteEditors.length - 1; i >= 0; i--) {
-              let local_editor = window.main.JSWriteEditors[i];
-
-              //Internal guard clause; make sure local_editor.editor actually exists
-              if (!local_editor.editor) {
-                window.main.JSWriteEditors.splice(i, 1);
-                continue;
-              }
-              local_editor.editor.codeMirror.setValue(window.main.code);
-            }
-        } catch (e) {}
-      }
     }
-    window.main.blockly_code = ""
-    window.main.code_prev = ""
     
     window.debugger = {
       log: function(msg){
@@ -71,18 +91,6 @@ class App extends Component {
         if(window.main.debugger){
           window.main.debugger.innerHTML = '' // value = ''
         }
-      }
-    }
-    window.main.updateWorkspace = function(e){
-      let Blockly = window.Blockly
-      console.log("updateWorkspace");
-      let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
-      window.main.blockly_code = blockly_code;
-      try{
-        window.main.JSReadEditor.setValue(blockly_code)
-      }
-      catch(e){
-        // JSReadEditor not opened yet.
       }
     }
 

@@ -24,7 +24,7 @@ class JSReadEditor extends Component {
     //Return statement
     return (
       <div className = "js-read-editor" style = {{
-        height: "calc(100vh - 22px)",
+        height: "calc(100vh)",
         width: "100%",
         display: "flex",
         padding: "0px"
