@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import CodeEditor from "./CodeEditor.jsx"
-import { parseCode } from '../../libraries/js2blocks.js';
+import { parseCode } from '../../lib/js2blocks.js';
 
 class RightPane extends Component {
   componentDidMount() {

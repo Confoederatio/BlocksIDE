@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { saveAs } from 'file-saver'
-import { parseCode } from '../../libraries/js2blocks.js'
+import { parseCode } from '../../lib/js2blocks.js'
 import { version } from '../../version.json'
 
 class Header extends Component {

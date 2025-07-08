@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import 'codemirror/libraries/codemirror.css';
+import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 
 import CodeMirror from 'react-codemirror';
 //import { walk } from 'acorn/dist/walk.js';
 
-import { parseCode } from '../../libraries/js2blocks.js';
+import { parseCode } from '../../lib/js2blocks.js';
 
 //var CodeMirror = require('react-codemirror');
-//require('codemirror/libraries/codemirror.css');
+//require('codemirror/lib/codemirror.css');
 //require('codemirror/mode/javascript/javascript');
 
 //var app_this

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'codemirror/libraries/codemirror.css';
+import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 
 import CodeMirror from 'react-codemirror';
