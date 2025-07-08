@@ -27,7 +27,7 @@ class JSReadEditor extends Component {
   render() {
     var style1 = {
       //height: "100vh;", // Full screen 
-      height: "100dvh",
+      height: "calc(100vh - 22px)",
       //"min-height": "100vh",
       width: "100%",
       display: "flex",

@@ -64,24 +64,39 @@ class ScriptManagerEditor extends Component {
   }
 
   render() {
-    var view_props = {
+    const view_props = {
       view_mode: this.state.view_mode,
-      toggleSplitScreen: this.toggleSplitScreen
+      toggleSplitScreen: this.toggleSplitScreen,
     };
 
     return (
-      <div className = "script-manager-editor">
-        <Header toggleSplitScreen = { this.toggleSplitScreen }></Header>
-        <SplitPane
-          onChange={this.resize}
-          split="vertical"
-          defaultSize={'50dvw'}
-          minSize = {250}
-          maxSize = {-16}
-        >
-          <LeftPane {...view_props}></LeftPane>
-          <RightPane {...view_props}></RightPane>
-        </SplitPane>
+      <div
+        className="script-manager-editor"
+        style={{
+          height: "100%", // Full viewport height
+          display: "flex",
+          flexDirection: "column", // Stack Header and SplitPane vertically
+          overflow: "hidden"
+        }}
+      >
+        {/* Header */}
+        <Header toggleSplitScreen={this.toggleSplitScreen} />
+
+        {/* SplitPane */}
+        <div style={{
+          overflow: "hidden"
+        }}>
+          <SplitPane
+            onChange={this.resize}
+            split="vertical"
+            defaultSize="50%" // Default to 50% width for the left pane
+            minSize={250} // Minimum size for the left pane
+            maxSize={-16} // This might need adjustment (see explanation below)
+          >
+            <LeftPane style={{ height: "100%", overflow: "hidden"}} {...view_props} />
+            <RightPane style={{ height: "100%", overflow: "hidden"}} {...view_props} />
+          </SplitPane>
+        </div>
       </div>
     );
   }
