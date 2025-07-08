@@ -8,13 +8,13 @@ if (typeof window !== 'undefined') {
 } else {
   Blockly = require('../node_modules/node-blockly/_blockly.js');
 }
-const biBlocks = require('./lib/bi_blockly/blocks/bi_blockly.js')
+const biBlocks = require('./libraries/bi_blockly/blocks/bi_blockly.js')
 biBlocks(Blockly);
 
-const blocklyJS = require('node-blockly/lib/javascript_compressed');
+const blocklyJS = require('node-blockly/libraries/javascript_compressed');
 blocklyJS(Blockly);
 
-const biBlocksJS = require('./lib/bi_blockly/generators/javascript/bi_blockly.js')
+const biBlocksJS = require('./libraries/bi_blockly/generators/javascript/bi_blockly.js')
 biBlocksJS(Blockly);
 
 console.log("Blockly")

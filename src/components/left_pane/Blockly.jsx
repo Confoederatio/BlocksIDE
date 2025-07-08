@@ -452,7 +452,7 @@ class Blockly extends Component {
     // Call after Blockly initialization
     interceptFlyoutTransforms();
 
-    this.workspace.addChangeListener(window._BIDE.updateWorkspace);
+    this.workspace.addChangeListener(window.main.updateWorkspace);
     var onresize = (e) => {
       blocklyDiv.style.left = '0px' // x + 'px';
       blocklyDiv.style.width = "100%"
@@ -462,7 +462,7 @@ class Blockly extends Component {
       fixFlyoutScaling();
     };
     //window.addEventListener('resize', onresize, false);
-    window._BIDE.resize.addCallback(onresize)
+    window.main.resize.addCallback(onresize)
     onresize();
     Blockly.svgResize(this.workspace);
     fixFlyoutScaling();

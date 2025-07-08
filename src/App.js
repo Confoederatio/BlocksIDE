@@ -12,11 +12,11 @@ class App extends Component {
     window.Blockly = Blockly
     window.Snap = Snap
 
-    window._BIDE = {
+    window.main = {
       JSReadEditors: [],
       JSWriteEditors: []
     }
-    let _BIDE = window._BIDE
+    let _BIDE = window.main
     _BIDE.b2c_error = false
     _BIDE.code = 'var i=10'
     
@@ -35,27 +35,27 @@ class App extends Component {
       console.log(`Refreshing CodeMirror editors`);
       if (_BIDE.init_finished) {
         try {
-          window._BIDE.JSReadEditor.refresh();
+          window.main.JSReadEditor.refresh();
         } catch (e) { console.warn(e); }
         try {
-          window._BIDE.JSWriteEditor.refresh();
+          window.main.JSWriteEditor.refresh();
         } catch (e) { console.warn(e); }
 
         try {
           if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
-            window._BIDE.JSReadEditor.setValue(window._BIDE.code);
+            window.main.JSReadEditor.setValue(window.main.code);
         } catch (e) {}
         try {
           if (!document.activeElement.parentElement.parentElement.getAttribute("class").includes("CodeMirror"))
-            for (let i = window._BIDE.JSWriteEditors.length - 1; i >= 0; i--) {
-              let local_editor = window._BIDE.JSWriteEditors[i];
+            for (let i = window.main.JSWriteEditors.length - 1; i >= 0; i--) {
+              let local_editor = window.main.JSWriteEditors[i];
 
               //Internal guard clause; make sure local_editor.editor actually exists
               if (!local_editor.editor) {
-                window._BIDE.JSWriteEditors.splice(i, 1);
+                window.main.JSWriteEditors.splice(i, 1);
                 continue;
               }
-              local_editor.editor.codeMirror.setValue(window._BIDE.code);
+              local_editor.editor.codeMirror.setValue(window.main.code);
             }
         } catch (e) {}
       }
@@ -75,13 +75,13 @@ class App extends Component {
         }
       }
     }
-    window._BIDE.updateWorkspace = function(e){
+    window.main.updateWorkspace = function(e){
       let Blockly = window.Blockly
       console.log("updateWorkspace");
       let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
-      window._BIDE.blockly_code = blockly_code;
+      window.main.blockly_code = blockly_code;
       try{
-        window._BIDE.JSReadEditor.setValue(blockly_code)
+        window.main.JSReadEditor.setValue(blockly_code)
       }
       catch(e){
         // JSReadEditor not opened yet.
@@ -91,8 +91,8 @@ class App extends Component {
     _BIDE.init_finished = true;
   }
   componentDidMount() {
-    window.addEventListener('resize', window._BIDE.resize.resize, false)
-    window._BIDE.resize.resize()
+    window.addEventListener('resize', window.main.resize.resize, false)
+    window.main.resize.resize()
     //Blockly.svgResize(Blockly.workspace);
   }
   render() {

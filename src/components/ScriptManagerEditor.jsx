@@ -47,7 +47,7 @@ class ScriptManagerEditor extends Component {
 
   resize = () => {
     try {
-      window._BIDE.resize.resize();
+      window.main.resize.resize();
     } catch (err) {
       console.log(err);
     }
@@ -55,11 +55,8 @@ class ScriptManagerEditor extends Component {
 
   toggleSplitScreen = () => {
     this.state.view_mode = (this.state.view_mode == "split") ? "unified": "split";
-    this.setState(() => {
+    this.setState(this.state, () => {
       this.resize();
-
-      //Return statement
-      return { view_mode: this.state.view_mode };
     });
   }
 

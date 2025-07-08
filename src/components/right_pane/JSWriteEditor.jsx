@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import 'codemirror/lib/codemirror.css';
+import 'codemirror/libraries/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 
 import CodeMirror from 'react-codemirror';
 //import { walk } from 'acorn/dist/walk.js';
 
-import { parseCode } from '../../lib/js2blocks.js';
+import { parseCode } from '../../libraries/js2blocks.js';
 
 //var CodeMirror = require('react-codemirror');
-//require('codemirror/lib/codemirror.css');
+//require('codemirror/libraries/codemirror.css');
 //require('codemirror/mode/javascript/javascript');
 
 //var app_this
@@ -17,17 +17,15 @@ class JSWriteEditor extends Component {
     super();
     //app_this = this;
     this.state = {
-      code: window._BIDE.code
+      code: window.main.code
     };
   }
   updateCode(newCode) {
-    this.setState({
-        code: newCode,
-    });
-    window._BIDE.code = newCode
+    this.state.code = newCode;
+    window.main.code = newCode
 
     parseCode(newCode)
-    window._BIDE.code_prev = window._BIDE.code;
+    window.main.code_prev = window.main.code;
     console.log(`JSWriteEditor: updateCode()`);
   }
   componentDidMount() {
@@ -35,13 +33,13 @@ class JSWriteEditor extends Component {
 
     //console.log(walk)
     //console.log(walk.recursive)
-    window._BIDE.JSWriteEditor = this.editor.codeMirror;
-    window._BIDE.JSWriteEditors.push(this);
+    window.main.JSWriteEditor = this.editor.codeMirror;
+    window.main.JSWriteEditors.push(this);
 
     // Check if old code == newCOde do not execute. Save old code
-    if(window._BIDE.code_prev !== this.state.code){
+    if(window.main.code_prev !== this.state.code){
       parseCode(this.state.code)
-      window._BIDE.code_prev = window._BIDE.code;
+      window.main.code_prev = window.main.code;
     }
     console.log(`JSWriteEditor: componentDidMount()`);
   }
@@ -66,7 +64,7 @@ class JSWriteEditor extends Component {
 
     return (
       <div className = "js-write-editor" style={style1}>
-        <CodeMirror style={style2} ref={ref => this.editor = ref} value = {window._BIDE.code} onChange={this.updateCode.bind(this)} options={options} />
+        <CodeMirror style={style2} ref={ref => this.editor = ref} value = {window.main.code} onChange={this.updateCode.bind(this)} options={options} />
       </div>
     );
   }

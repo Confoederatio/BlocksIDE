@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { saveAs } from 'file-saver'
-import { parseCode } from '../../lib/js2blocks.js'
+import { parseCode } from '../../libraries/js2blocks.js'
 import { version } from '../../version.json'
 
 class Header extends Component {
@@ -17,7 +17,7 @@ class Header extends Component {
   //  }
   save() {
     console.log("Save JS Editor")
-    var blob = new Blob([window._BIDE.code], {
+    var blob = new Blob([window.main.code], {
         type : 'text/plain'
       });
     console.log(saveAs)
@@ -25,7 +25,7 @@ class Header extends Component {
   }
   saveGen() {
     console.log("Save Generated JS")
-    var blob = new Blob([window._BIDE.blockly_code], {
+    var blob = new Blob([window.main.blockly_code], {
         type : 'text/plain'
       });
     console.log(saveAs)
@@ -41,22 +41,22 @@ class Header extends Component {
     console.log("open "+input.files[0]);
     var reader = new FileReader();
     reader.onload = function(){
-      window._BIDE.code = reader.result
-      window._BIDE.JSWriteEditor.setValue(reader.result);
+      window.main.code = reader.result
+      window.main.JSWriteEditor.setValue(reader.result);
       
       parseCode(reader.result)
-      window._BIDE.code_prev = window._BIDE.code
+      window.main.code_prev = window.main.code
     }
     reader.readAsText(input.files[0]);
   }
   copyEd2_Ed1(){
     //console.log("copyEd2_Ed1")
 
-    window._BIDE.code = window._BIDE.blockly_code;
-    window._BIDE.JSWriteEditor.setValue(window._BIDE.code);
+    window.main.code = window.main.blockly_code;
+    window.main.JSWriteEditor.setValue(window.main.code);
 
-    parseCode(window._BIDE.code)
-    window._BIDE.code_prev = window._BIDE.code;
+    parseCode(window.main.code)
+    window.main.code_prev = window.main.code;
   }
   bi_pane1_clear(){
     var debugger_el = document.querySelector(`#debugger`);
@@ -74,7 +74,7 @@ class Header extends Component {
 
       // JCOA: Is there a safe eval with debug options?
       // eslint-disable-next-line
-      eval(window._BIDE.blockly_code)
+      eval(window.main.blockly_code)
     }
     catch(err){
       //bi_debugger.value += err;

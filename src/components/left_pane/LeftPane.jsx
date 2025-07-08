@@ -12,15 +12,22 @@ class LeftPane extends Component {
     super();
     this.state = {
       // We only need one piece of state: the currently selected tab index.
-      selectedIndex: 0
+      selected_index: 0
     };
   }
 
   // This is the only event handler we need.
   // It updates our state when a tab is clicked.
-  handleTabSelect = (index) => {
-    this.setState({ selectedIndex: index }, () => {
-      document.querySelector(`.blocklyToolboxDiv`).style.display = (this.state.selectedIndex != 0) ?
+  handleTabSelect = (arg0_new_index) => {
+    //Convert from parameters
+    var new_index = arg0_new_index;
+
+    //Declare local instance variables
+    this.state.selected_index = new_index;
+
+    //this.setState() is a necessary evil to force reflow
+    this.setState(this.state, () => {
+      document.querySelector(`.blocklyToolboxDiv`).style.display = (this.state.selected_index != 0) ?
         "none" : "block";
 
       //Call resize to redraw
@@ -33,39 +40,39 @@ class LeftPane extends Component {
 
   resize() {
     try {
-      window._BIDE.resize.resize();
+      window.main.resize.resize();
     } catch (err) {
       console.log(err);
     }
   }
 
   componentDidMount() {
-    window._BIDE.debugger = this.debugger;
+    window.main.debugger = this.debugger;
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.view_mode !== this.props.view_mode)
       setTimeout(() => this.resize(), 0);
-    if (this.props.view_mode != "unified" && this.state.selectedIndex >= 2)
+    if (this.props.view_mode != "unified" && this.state.selected_index >= 2)
       this.handleTabSelect(0);
   }
 
   render() {
     // Define a style for the hidden panel
-    const hiddenTabPanelStyle = {
+    var hidden_tab_style = {
       display: 'none'
     };
 
     // We will apply this style conditionally
-    const tab_one_style = this.state.selectedIndex === 0 ? {} : hiddenTabPanelStyle;
-    const tab_two_style = this.state.selectedIndex === 1 ? {} : hiddenTabPanelStyle;
-    const tab_three_style = this.state.selectedIndex === 2 ? {} : hiddenTabPanelStyle;
-    const tab_four_style = this.state.selectedIndex === 3 ? {} : hiddenTabPanelStyle;
+    const tab_one_style = this.state.selected_index === 0 ? {} : hidden_tab_style;
+    const tab_two_style = this.state.selected_index === 1 ? {} : hidden_tab_style;
+    const tab_three_style = this.state.selected_index === 2 ? {} : hidden_tab_style;
+    const tab_four_style = this.state.selected_index === 3 ? {} : hidden_tab_style;
 
     return (
-      <div className = {`left-pane ${this.props.view_mode} data-selected-${this.state.selectedIndex}`}>
+      <div className = {`left-pane ${this.props.view_mode} data-selected-${this.state.selected_index}`}>
         {/* Control the selected tab index directly from our state */}
-        <Tabs selectedIndex={this.state.selectedIndex} onSelect={this.handleTabSelect}>
+        <Tabs selectedIndex = {this.state.selected_index} onSelect = {this.handleTabSelect}>
           <TabList>
             <Tab>Block Editor</Tab>
             <Tab>Debugger</Tab>

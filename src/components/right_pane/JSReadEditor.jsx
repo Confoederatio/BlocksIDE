@@ -1,55 +1,45 @@
 import React, { Component } from 'react';
-import 'codemirror/lib/codemirror.css';
+import 'codemirror/libraries/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 
 import CodeMirror from 'react-codemirror';
 
-//var CodeMirror = require('react-codemirror');
-//require('codemirror/lib/codemirror.css');
-//require('codemirror/mode/javascript/javascript');
-
 class JSReadEditor extends Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
-      code: window._BIDE.blockly_code,
+      code: window.main.blockly_code,
     };
   }
-  updateCode(newCode) {
-      this.setState({
-          code: newCode,
-      });
+  componentDidMount () {
+    window.main.JSReadEditor = this.editor.codeMirror;
   }
-  componentDidMount() {
-    //console.log("JSReadEditor");
-    window._BIDE.JSReadEditor = this.editor.codeMirror;
-  }
-  render() {
-    var style1 = {
-      //height: "100vh;", // Full screen 
-      height: "calc(100vh - 22px)",
-      //"min-height": "100vh",
-      width: "100%",
-      display: "flex",
-      padding: "0px",
-      //"align-content": "stretch",
-    };
-    var style2 = {
-      //flex: 1
-      //width: "350px", // This is not responding, it does take the value from the css
-      //flex: "flex-grow"
-    };
+  render () {
     var options = {
-      readOnly: true,
       lineNumbers: true,
-      mode: "javascript"
+      mode: "javascript",
+      readOnly: true
     };
+
+    //Return statement
     return (
-      <div className = "js-read-editor" style={style1}>
-        <CodeMirror ref={ref => this.editor = ref} style={style2} value={this.state.code}
-        options={options} />
+      <div className = "js-read-editor" style = {{
+        height: "calc(100vh - 22px)",
+        width: "100%",
+        display: "flex",
+        padding: "0px"
+      }}>
+        <CodeMirror ref = {ref => this.editor = ref} value={this.state.code}
+        options={options}/>
       </div>
     );
+  }
+
+  updateCode (arg0_new_code) {
+    //Convert from parameters
+    var new_code = arg0_new_code;
+
+    this.state.code = new_code;
   }
 }
 

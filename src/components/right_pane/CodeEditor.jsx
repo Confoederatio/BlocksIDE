@@ -26,14 +26,12 @@ class CodeEditor extends Component {
   
   handleSelect(index, last) {
     console.log('Selected tab: ' + index + ', Last tab: ' + last);
-    //tabs1_this.setState({ tabIndex: index });
-    this.setState({ tabIndex: index }, () => {
-      this.resize();
-    });
+    this.state.tabIndex = index;
+    this.resize();
   }
   resize() {
     try {
-      window._BIDE.resize.resize();
+      window.main.resize.resize();
     } catch (err) {
       console.log(err);
     }
