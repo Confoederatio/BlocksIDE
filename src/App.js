@@ -3,7 +3,6 @@ import './css/layout.css';
 import 'react-tabs/style/react-tabs.css';
 import ScriptManagerEditor from './components/ScriptManagerEditor.jsx';
 import Blockly from './blockly';
-//import Snap from 'snapsvg';
 const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
 
 class App extends Component {
@@ -16,24 +15,23 @@ class App extends Component {
       JSReadEditors: [],
       JSWriteEditors: []
     }
-    let _BIDE = window.main
-    _BIDE.b2c_error = false
-    _BIDE.code = 'var i=10'
+    window.main.b2c_error = false
+    window.main.code = 'var i=10'
     
-    _BIDE.resize = {}
-    _BIDE.resize.callbackList = []
-    _BIDE.resize.addCallback = function(callback){
-        _BIDE.resize.callbackList.push(callback)  
+    window.main.resize = {}
+    window.main.resize.callbackList = []
+    window.main.resize.addCallback = function(callback){
+        window.main.resize.callbackList.push(callback)  
       }
-    _BIDE.resize.resize = function(){
+    window.main.resize.resize = function(){
       // console.log("Resize")
-      _BIDE.resize.callbackList.forEach(function(cb) {
+      window.main.resize.callbackList.forEach(function(cb) {
         cb()
       })
 
       //Refresh CodeMirror editors
       console.log(`Refreshing CodeMirror editors`);
-      if (_BIDE.init_finished) {
+      if (window.main.init_finished) {
         try {
           window.main.JSReadEditor.refresh();
         } catch (e) { console.warn(e); }
@@ -60,18 +58,18 @@ class App extends Component {
         } catch (e) {}
       }
     }
-    _BIDE.blockly_code = ""
-    _BIDE.code_prev = ""
+    window.main.blockly_code = ""
+    window.main.code_prev = ""
     
     window.debugger = {
       log: function(msg){
-        if(_BIDE.debugger){
-          _BIDE.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
+        if(window.main.debugger){
+          window.main.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
         }
       },
       clear: function(){
-        if(_BIDE.debugger){
-          _BIDE.debugger.innerHTML = '' // value = ''
+        if(window.main.debugger){
+          window.main.debugger.innerHTML = '' // value = ''
         }
       }
     }
@@ -88,7 +86,7 @@ class App extends Component {
       }
     }
 
-    _BIDE.init_finished = true;
+    window.main.init_finished = true;
   }
   componentDidMount() {
     window.addEventListener('resize', window.main.resize.resize, false)

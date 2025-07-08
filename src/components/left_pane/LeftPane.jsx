@@ -1,7 +1,4 @@
-// In LeftPane.jsx
-
 import React, { Component } from 'react';
-import Header from "./Header.jsx";
 import Blockly from './Blockly.jsx';
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import JSWriteEditor from "../right_pane/JSWriteEditor";

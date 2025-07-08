@@ -1,4 +1,5 @@
-var toolboxXmlString = `<xml id="toolbox" style="display: none">
+var toolbox_xml_string = `
+<xml id="toolbox" style="display: none">
     <category id="catLogic" name="Logic" colour="210">
         <block type="controls_if"></block>
         <block type="bi_logic_compare"></block>
@@ -378,6 +379,7 @@ var toolboxXmlString = `<xml id="toolbox" style="display: none">
         </category>
         -->
     </category>
-</xml>`;
+</xml>
+`;
 
-export default toolboxXmlString;
+export default toolbox_xml_string;

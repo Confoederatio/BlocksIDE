@@ -1,16 +1,9 @@
-// Copyright 2016 Juan Carlos Orozco
-// Licensed under the Apache License, Version 2.0 (the "License");
-// https://github.com/JC-Orozco/BlocksIDE
-
 import React, { Component } from 'react';
 import toolbox from '../common/toolbox.js';
-//import BlocklyEditor from 'react-blockly-component';
-//import Blockly from '../blockly';
 
-//var Blockly_this
 class Blockly extends Component {
-  async componentDidMount() {
-    let Blockly = window.Blockly;
+  async componentDidMount () {
+    var Blockly = window.Blockly; //Extends Blockly as Component in constructor
 
     var blocklyContainer = this.blocklyContainer; //document.getElementById('blocklyContainer');
     var blocklyDiv = this.blocklyDiv; //document.getElementById('blocklyDiv');
@@ -75,14 +68,14 @@ class Blockly extends Component {
       blocklyDiv.style.left = '0px' // x + 'px';
       blocklyDiv.style.width = "100%"
       blocklyDiv.style.height = "calc(100% - " + document.querySelector(`.react-tabs`).offsetHeight + "px)";
-      Blockly.svgResize(this.workspace);
+      window.Blockly.svgResize(this.workspace);
 
       fixFlyoutScaling();
     };
     //window.addEventListener('resize', onresize, false);
     window.main.resize.addCallback(onresize)
     onresize();
-    Blockly.svgResize(this.workspace);
+    window.Blockly.svgResize(this.workspace);
     fixFlyoutScaling();
   }
   render() {

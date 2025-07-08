@@ -1,7 +1,3 @@
-// Copyright 2016 Juan Carlos Orozco
-// Licensed under the Apache License, Version 2.0 (the "License");
-// https://github.com/JC-Orozco/BlocksIDE
-
 import React, { Component } from 'react';
 import CodeEditor from "./CodeEditor.jsx"
 import { parseCode } from '../../lib/js2blocks.js';

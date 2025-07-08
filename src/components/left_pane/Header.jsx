@@ -1,20 +1,9 @@
-// Copyright 2016 Juan Carlos Orozco
-// Licensed under the Apache License, Version 2.0 (the "License");
-// https://github.com/JC-Orozco/BlocksIDE
-
 import React, { Component } from 'react'
 import { saveAs } from 'file-saver'
 import { parseCode } from '../../lib/js2blocks.js'
 import { version } from '../../version.json'
 
 class Header extends Component {
-  //  constructor() {
-  //    super()
-  //    console.log(version)
-  //    this.version = version
-  //  }
-  //  componentWillMount(){    
-  //  }
   save() {
     console.log("Save JS Editor")
     var blob = new Blob([window.main.code], {
