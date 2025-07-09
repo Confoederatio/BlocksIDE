@@ -1,0 +1,8 @@
+.react-blockside {
+    flex: 1;
+}
+.react-blockside iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+}
