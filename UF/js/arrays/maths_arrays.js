@@ -88,11 +88,11 @@ function addMatrices (arg0_matrix, arg1_matrix) {
     //Iterate over columns
     for (var x = 0; x < matrix[i].length; x++)
       //Add corresponding elements and push to the result matrix
-      return_matrix[i].push(matrix[i][j] + ot_matrix[i][j]);
+      return_matrix[i].push(matrix[i][x] + ot_matrix[i][x]);
   }
 
   //Return statement
-  return result;
+  return return_matrix;
 }
 
 /*
@@ -441,7 +441,7 @@ function gaussSeidelMatrix (arg0_matrix, arg1_tolerance, arg2_max_iterations) {
   getCofactor() - Fetches the cofactor in a matrix.
   arg0_matrix: (Array<Array, ...>) - The matrix to pass to the function.
   arg1_row: (Number) - The row to calculate cofactor for.
-  arg2_column: (Number) - The column to calcualte cofactor for.
+  arg2_column: (Number) - The column to calculate cofactor for.
 
   Returns: (Array<Array, ...>)
 */
@@ -780,7 +780,7 @@ function operateArrays (arg0_array, arg1_array, arg2_equation, arg3_options) {
     Q: (Array<Array, ...>)
     R: (Array<Array, ...>)
 */
-function QRDecompositionMatrix (arg0_matrix) {
+function QRDecompositionMatrix (arg0_matrix) { //[WIP] - This function is flawed in terms of R results.
   //Convert from parameters
   var matrix = arg0_matrix;
 
@@ -808,18 +808,18 @@ function QRDecompositionMatrix (arg0_matrix) {
     }
 
     //Subtract the projections of previous basis vectors from the ith column of Q
-      for (var x = 0; x < m; x++)
-        for (var y = 0; y <= i; y++)
-          Q[x][i] -= R[y][i]*Q[x][y];
+    for (var x = 0; x < m; x++)
+      for (var y = 0; y <= i; y++)
+        Q[x][i] -= R[y][i]*Q[x][y];
 
-      // Normalize the ith column of Q
-      var norm = 0;
-      for (var x = 0; x < m; x++)
-        norm += Q[x][i]*Q[x][i];
-      norm = Math.sqrt(norm);
+    //Normalise the ith column of Q
+    var norm = 0;
+    for (var x = 0; x < m; x++)
+      norm += Q[x][i]*Q[x][i];
+    norm = Math.sqrt(norm);
 
-      for (var x = 0; x < m; x++)
-        Q[x][i] /= norm;
+    for (var x = 0; x < m; x++)
+      Q[x][i] /= norm;
   }
 
   //Return statement

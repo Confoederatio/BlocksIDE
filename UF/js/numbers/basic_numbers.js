@@ -5,18 +5,18 @@
 */
 function alphabetiseNumber (arg0_string) {
   //Convert from parameters
-  var string = arg0_strin.toString();
+  var string = arg0_string.toString();
 
   //Declare local instance variables
   var alphabet_array = "abcdefghij";
 	var alphabetised_string = "";
 
   //Iterate over number to alphabetise it
-	for (var i = 0; i < number.length; i++)
-		if (!isNaN(parseInt(number[i]))) {
-			alphabetised_string += alphabet_array[parseInt(number[i])];
+	for (var i = 0; i < string.length; i++)
+		if (!isNaN(parseInt(string[i]))) {
+			alphabetised_string += alphabet_array[parseInt(string[i])];
 		} else {
-			alphabetised_string += number[i];
+			alphabetised_string += string[i];
 		}
 
 	//Return statement
@@ -93,8 +93,8 @@ function deordinalise (arg0_string) {
 
 /*
   exp() - Exponentiates a number.
-  arg0_number: (String) - The base to exponentiate.
-  arg1_number: (String) - The power to exponentiate by.
+  arg0_number: (Number) - The base to exponentiate.
+  arg1_number: (Number) - The power to exponentiate by.
 
   Returns: (Number)
 */
@@ -163,9 +163,9 @@ function generateRandomID (arg0_object) {
 }
 
 /*
-  logarithm() - Calculates log/natural log
-  arg0_x: (Number) - The x to calculate the log for.
-  arg1_y: (Number) - The y to calculate the log for.
+  logarithm() - Calculates logarithm/natural logarithm
+  arg0_x: (Number) - The x to calculate the logarithm for.
+  arg1_y: (Number) - The y to calculate the logarithm for.
 
   Returns: (Number)
 */
@@ -391,7 +391,7 @@ function randomNumber (arg0_min, arg1_max, arg2_do_not_round) {
 */
 function returnSafeNumber (arg0_operation, arg1_default) {
   //Convert from parameters
-  var operation = arg0_operation;
+  var operation = parseFloat(arg0_operation);
   var default_number = (arg1_default) ? arg1_default : 0;
 
   //Return statement

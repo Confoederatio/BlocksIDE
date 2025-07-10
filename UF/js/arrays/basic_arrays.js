@@ -1,4 +1,20 @@
 /*
+  appendArrays() - Appends an array to another.
+  arg0_array: (Array)
+  arg1_array: (Array)
+
+  Returns: (Array)
+*/
+function appendArrays (arg0_array, arg1_array) {
+  //Convert from parameters
+  var array = arg0_array;
+  var ot_array = arg1_array;
+
+  //Return statement
+  return array.concat(array, ot_array);
+}
+
+/*
   createArray() - Creates an array from the following options.
   arg0_options: (Object)
     domain: (Array<Number, Number>) - Creates an integer array between min, max.
