@@ -27,6 +27,12 @@ Because **Scriptly** is an Electron app, no web demo is provided for it online, 
 
 Multi-file management for end app components are implemented through Vercengen for the time being, although we plan on bundling it with the standalone version of the app in the future.
 
+**Major Dependencies:**
+- Blockly
+- Electron
+- Create React App (quarantined)
+- BaklavaJS (planned)
+
 ## Attribution.
 
 Credit goes to Juan Carlos Oroczo of [BlocksIDE](https://github.com/JC-Orozco/BlocksIDE) for much of the original transpiler code. Since Create React App has been deprecated in the years since the original repository was updated, we have quarantined it as a subsection of the main Electron process and refactored most of the Components to use composition over inheritance.
