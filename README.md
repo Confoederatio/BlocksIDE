@@ -14,7 +14,7 @@
 
 > [!WARNING]
 > Scriptly is currently in **beta.**
-> This means that certain features, such as node-based editing and transpilers may not be fully implemented at the time of writing. We plan for full implementation using a bidirectional Blockly to BaklavaJS transpiler.
+> This means that certain features, such as node-based editing and transpilers may not be fully implemented at the time of writing.
 
 ![](https://github.com/Confoederatio/Scriptly/blob/master/gfx/scriptly_preview_01.png)
 
