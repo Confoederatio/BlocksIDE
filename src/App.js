@@ -129,16 +129,11 @@ function initialiseBindings () {
 
   window.runJS = function () {
     try{
-      //bi_debugger_clear();
       window.debugger.clear();
-
-      // JCOA: Is there a safe eval with debug options?
-      // eslint-disable-next-line
-      eval(window.main.blockly_code)
-    }
-    catch(err){
+      eval(window.main.blockly_code);
+    } catch (e){
       //bi_debugger.value += err;
-      console.log(err)
+      console.log(e);
     }
   };
 
