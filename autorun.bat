@@ -1,1 +1,8 @@
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --allow-file-access-from-files "D:\Project 0707 - BlocksIDE\index.html"
+@echo off
+title UF Browser Testbed
+echo [UF Browser] Auto-run is starting ..
+:main
+npm start
+timeout /t 30
+echo [UF Browser] Crashed! Restarting ..
+goto main

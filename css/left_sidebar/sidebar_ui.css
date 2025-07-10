@@ -1,0 +1,22 @@
+/* -- Container styling -- */
+#left-sidebar-container {
+  position: fixed;
+
+  height: 85vh;
+  left: 0.75rem;
+  top: calc(15vh/2);
+  width: clamp(20rem, 20vw, 80rem);
+
+  background-color: var(--context-menu-background-colour);
+  color: var(--context-menu-colour);
+  font-family: var(--context-menu-font-family);
+  font-size: var(--context-menu-body-font-size);
+  padding: 1rem;
+  z-index: 1;
+}
+
+/* -- Element styling -- */
+.hierarchy-header {
+  font-size: var(--context-menu-header-font-size);
+  font-weight: var(--context-menu-header-font-weight);
+}
