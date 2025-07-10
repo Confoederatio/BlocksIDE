@@ -98,7 +98,9 @@ class App extends Component {
     window.addEventListener('resize', window.main.resize.resize, false);
     window.main.resize.resize();
   }
+
   render() {
+    //Return statement
     return (
       <ScriptManagerEditor/>
     );

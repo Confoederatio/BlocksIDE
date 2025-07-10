@@ -9,11 +9,13 @@ import { parseCode } from '../../lib/js2blocks.js';
 class JSWriteEditor extends Component {
   constructor() {
     super();
-    //app_this = this;
+
+    //Declare local instance variables
     this.state = {
       code: window.main.code
     };
   }
+
   updateCode(newCode) {
     this.state.code = newCode;
     window.main.code = newCode
