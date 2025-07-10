@@ -39,6 +39,9 @@ class ScriptManagerEditor extends Component {
         }
       }, 0);
     }
+
+    //Set window.main.ScriptManagerEditor
+    window.main.ScriptManagerEditor = this;
   }
 
   resize = () => {

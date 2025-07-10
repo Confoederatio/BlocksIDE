@@ -3,6 +3,8 @@ import './css/layout.css';
 import 'react-tabs/style/react-tabs.css';
 import ScriptManagerEditor from './components/ScriptManagerEditor.jsx';
 import Blockly from './blockly';
+import {saveAs} from "file-saver";
+import {parseCode} from "./lib/js2blocks";
 const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
 
 class App extends Component {
@@ -11,6 +13,19 @@ class App extends Component {
     window.Blockly = Blockly
     window.Snap = Snap
 
+    window.debugger = {
+      log: function(msg){
+        if(window.main.debugger){
+          window.main.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
+        }
+      },
+      clear: function(){
+        var debugger_el = document.querySelector(`#debugger`);
+
+        while (debugger_el.firstChild)
+          debugger_el.removeChild(debugger_el.firstChild);
+      }
+    };
     window.main = {
       //Component Arrays
       JSReadEditors: [],
@@ -80,19 +95,7 @@ class App extends Component {
         }
       }
     }
-    
-    window.debugger = {
-      log: function(msg){
-        if(window.main.debugger){
-          window.main.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
-        }
-      },
-      clear: function(){
-        if(window.main.debugger){
-          window.main.debugger.innerHTML = '' // value = ''
-        }
-      }
-    }
+    initialiseBindings();
 
     window.main.init_finished = true;
   }
@@ -106,6 +109,66 @@ class App extends Component {
       <ScriptManagerEditor/>
     );
   }
+}
+
+//Initialise binding functions
+function initialiseBindings () {
+  window.openJS = function (event) {
+    var input = event.target;
+    console.log("open "+input.files[0]);
+    var reader = new FileReader();
+    reader.onload = function(){
+      window.main.code = reader.result
+      window.main.JSWriteEditor.setValue(reader.result);
+
+      parseCode(reader.result)
+      window.main.code_prev = window.main.code
+    }
+    reader.readAsText(input.files[0]);
+  };
+
+  window.runJS = function () {
+    try{
+      //bi_debugger_clear();
+      window.debugger.clear();
+
+      // JCOA: Is there a safe eval with debug options?
+      // eslint-disable-next-line
+      eval(window.main.blockly_code)
+    }
+    catch(err){
+      //bi_debugger.value += err;
+      console.log(err)
+    }
+  };
+
+  window.saveGeneratedJS = function () {
+    console.log("Save Generated JS")
+    var blob = new Blob([window.main.blockly_code], {
+      type : 'text/plain'
+    });
+    console.log(saveAs)
+    saveAs(blob, 'script1.js');
+  };
+
+  window.saveJS = function () {
+    console.log("Save JS Editor")
+    var blob = new Blob([window.main.code], {
+      type : 'text/plain'
+    });
+    console.log(saveAs)
+    saveAs(blob, 'script1.js');
+  };
+
+  window.synchroniseEditors = function () {
+    //console.log("copyEd2_Ed1")
+
+    window.main.code = window.main.blockly_code;
+    window.main.JSWriteEditor.setValue(window.main.code);
+
+    parseCode(window.main.code)
+    window.main.code_prev = window.main.code;
+  };
 }
 
 export default App;
