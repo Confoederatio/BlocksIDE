@@ -1,8 +1,8 @@
 @echo off
-title UF Browser Testbed
-echo [UF Browser] Auto-run is starting ..
+title Scriptly
+echo [Scriptly] Auto-run is starting ..
 :main
 npm start
 timeout /t 30
-echo [UF Browser] Crashed! Restarting ..
+echo [Scriptly] Crashed! Restarting ..
 goto main
