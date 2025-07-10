@@ -8,31 +8,20 @@ import {parseCode} from "./lib/js2blocks";
 const Snap = require(`imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js`);
 
 class App extends Component {
-  componentWillMount(){
-    // Global scope
-    window.Blockly = Blockly
-    window.Snap = Snap
+  //componentWillMount() - Runs on App initialisation
+  componentWillMount () {
+    //Initialise global variables
+    window.Blockly = Blockly;
+    window.Snap = Snap;
 
-    window.debugger = {
-      log: function(msg){
-        if(window.main.debugger){
-          window.main.debugger.innerHTML += msg + '<br>' // value += msg + '\n'
-        }
-      },
-      clear: function(){
-        var debugger_el = document.querySelector(`#debugger`);
-
-        while (debugger_el.firstChild)
-          debugger_el.removeChild(debugger_el.firstChild);
-      }
-    };
+    //Initialise window.main, i.e. global state
     window.main = {
       //Component Arrays
       JSReadEditors: [],
       JSWriteEditors: [],
 
       //Variables (Transpiler)
-      b2c_error: false,
+      b2c_error: false, //b2c: Blocks to Code
 
       //Variables (UI)
       blockly_code: "",
@@ -42,18 +31,22 @@ class App extends Component {
       //KEEP AT BOTTOM! - Functions/Logic
 
       resize: {
-        callbackList: [],
-        addCallback: function(callback){
-          window.main.resize.callbackList.push(callback)
+        callback_list: [],
+
+        addCallback: function (arg0_callback) {
+          //Convert from parameters
+          var callback = arg0_callback;
+
+          //Push callback to callback_list
+          window.main.resize.callback_list.push(callback);
         },
         resize: function () {
-          // console.log("Resize")
-          window.main.resize.callbackList.forEach(function(cb) {
-            cb()
-          })
+          //Iterate over each callback in the current callback_list
+          window.main.resize.callback_list.forEach(function (local_callback) {
+            local_callback();
+          });
 
           //Refresh CodeMirror editors
-          console.log(`Refreshing CodeMirror editors`);
           if (window.main.init_finished) {
             try {
               window.main.JSReadEditor.refresh();
@@ -83,26 +76,27 @@ class App extends Component {
         }
       },
       updateWorkspace: function () {
-        let Blockly = window.Blockly
-        console.log("updateWorkspace");
-        let blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
+        //Declare local instance varaibles
+        var Blockly = window.Blockly;
+        var blockly_code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
+
+        //Update Blockly code
         window.main.blockly_code = blockly_code;
-        try{
-          window.main.JSReadEditor.setValue(blockly_code)
-        }
-        catch(e){
-          // JSReadEditor not opened yet.
-        }
+        try {
+          window.main.JSReadEditor.setValue(blockly_code);
+        } catch (e) {}
       }
     }
+
     initialiseBindings();
+    initialiseDebugger();
 
     window.main.init_finished = true;
   }
+
   componentDidMount() {
-    window.addEventListener('resize', window.main.resize.resize, false)
-    window.main.resize.resize()
-    //Blockly.svgResize(Blockly.workspace);
+    window.addEventListener('resize', window.main.resize.resize, false);
+    window.main.resize.resize();
   }
   render() {
     return (
@@ -113,6 +107,7 @@ class App extends Component {
 
 //Initialise binding functions
 function initialiseBindings () {
+  //Initialise functions
   window.openJS = function (event) {
     var input = event.target;
     console.log("open "+input.files[0]);
@@ -125,15 +120,17 @@ function initialiseBindings () {
       window.main.code_prev = window.main.code
     }
     reader.readAsText(input.files[0]);
+
+    //Return statement
+    return window.main.code;
   };
 
   window.runJS = function () {
-    try{
+    try {
       window.debugger.clear();
-      eval(window.main.blockly_code);
-    } catch (e){
-      //bi_debugger.value += err;
-      console.log(e);
+      return eval(window.main.blockly_code);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -144,6 +141,9 @@ function initialiseBindings () {
     });
     console.log(saveAs)
     saveAs(blob, 'script1.js');
+
+    //Return statement
+    return window.main.blockly_code;
   };
 
   window.saveJS = function () {
@@ -153,16 +153,43 @@ function initialiseBindings () {
     });
     console.log(saveAs)
     saveAs(blob, 'script1.js');
+
+    //Return statement
+    return window.main.code;
   };
 
   window.synchroniseEditors = function () {
-    //console.log("copyEd2_Ed1")
-
     window.main.code = window.main.blockly_code;
     window.main.JSWriteEditor.setValue(window.main.code);
 
     parseCode(window.main.code)
     window.main.code_prev = window.main.code;
+  };
+
+  window.toggleSplitScreen = function () {
+    window.main.ScriptManagerEditor.toggleSplitScreen();
+  };
+}
+
+function initialiseDebugger () {
+  //Initialise functions
+  window.debugger = {
+    clear: function () {
+      //Declare local instance variables
+      var debugger_el = document.querySelector(`#debugger`);
+
+      //Recursively clear children
+      while (debugger_el.firstChild)
+        debugger_el.removeChild(debugger_el.firstChild);
+    },
+    log: function (arg0_string){
+      //Convert from parameters
+      var string = arg0_string;
+
+      //Append string to window.main.debugger.innerHTML
+      if (window.main.debugger)
+        window.main.debugger.innerHTML += `<span>${string}<br></span>`;
+    }
   };
 }
 
