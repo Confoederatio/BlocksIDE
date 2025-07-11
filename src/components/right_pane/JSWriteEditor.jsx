@@ -12,21 +12,15 @@ class JSWriteEditor extends Component {
 
     //Declare local instance variables
     this.state = {
-      code: window.main.code
+      code: window.main.code,
+      theme: "tomorrow-night-bright"
     };
   }
 
-  updateCode(newCode) {
-    this.state.code = newCode;
-    window.main.code = newCode
-
-    parseCode(newCode)
-    window.main.code_prev = window.main.code;
-    console.log(`JSWriteEditor: updateCode()`);
-  }
   componentDidMount() {
     var has_instance = false;
     window.main.JSWriteEditor = this.editor.codeMirror;
+    window.main.JSWriteEditorInstance = this;
     window.main.JSWriteEditors.push(this);
 
     // Check if old code == newCOde do not execute. Save old code
@@ -36,10 +30,12 @@ class JSWriteEditor extends Component {
     }
     console.log(`JSWriteEditor: componentDidMount()`);
   }
+
   render() {
     var options = {
       lineNumbers: true,
-      mode: "javascript"
+      mode: "javascript",
+      theme: this.state.theme
     };
 
     return (
@@ -52,6 +48,23 @@ class JSWriteEditor extends Component {
         <CodeMirror ref={ref => this.editor = ref} value = {window.main.code} onChange={this.updateCode.bind(this)} options={options} />
       </div>
     );
+  }
+
+  setTheme (arg0_theme) {
+    //Convert from parameters
+    var theme = arg0_theme;
+
+    //Set state
+    this.setState({ theme: theme });
+  }
+
+  updateCode(newCode) {
+    this.state.code = newCode;
+    window.main.code = newCode
+
+    parseCode(newCode)
+    window.main.code_prev = window.main.code;
+    console.log(`JSWriteEditor: updateCode()`);
   }
 }
 

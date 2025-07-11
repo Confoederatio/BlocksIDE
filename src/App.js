@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './css/layout.css';
+import './css/editor_themes/vanilla_codemirror_themes.css';
 import 'react-tabs/style/react-tabs.css';
 import ScriptManagerEditor from './components/ScriptManagerEditor.jsx';
 import Blockly from './blockly';

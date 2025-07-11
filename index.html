@@ -12,6 +12,8 @@
   <iframe src = "./build/index.html"></iframe>
 </div>
 <script>
+  window.editor = document.querySelector("#react-blockside iframe").contentWindow;
+
   //2. Scripts
   {
     var { ipcRenderer } = require('electron');
