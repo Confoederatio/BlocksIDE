@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ScriptManager 0.6b</title>
-  <link rel = "stylesheet" href = "./css/global.css">
-  <link rel = "stylesheet" href = "./css/layout.css">
-  <link rel = "shortcut icon" href = "public/favicon.png">
-</head>
-<body>
-<div id = "react-blockside" class = "react-blockside">
-  <iframe src = "./build/index.html"></iframe>
-</div>
-<script>
-  window.editor = document.querySelector("#react-blockside iframe").contentWindow;
+  <head>
+    <meta charset="UTF-8">
+    <title>ScriptManager 0.6b</title>
+    <link rel = "stylesheet" href = "./css/global.css">
+    <link rel = "stylesheet" href = "./css/layout.css">
+    <link rel = "shortcut icon" href = "public/favicon.png">
+  </head>
+  <body>
+    <div id = "react-blockside" class = "react-blockside">
+      <iframe src = "./build/index.html"></iframe>
+    </div>
+    <script>
+      window.editor = document.querySelector("#react-blockside iframe").contentWindow;
 
-  //2. Scripts
-  {
-    var { ipcRenderer } = require('electron');
+      //2. Scripts
+      {
+        var { ipcRenderer } = require('electron');
 
-    var frame_count = 0;
-    var last_time = performance.now();
+        var frame_count = 0;
+        var last_time = performance.now();
 
-    function trackFPS() {
-      frame_count++;
-      const now = performance.now();
+        function trackFPS() {
+          frame_count++;
+          const now = performance.now();
 
-      //Report back to the main process once per second
-      if (now - last_time >= 1000) {
-        ipcRenderer.send('update-fps', frame_count);
-        frame_count = 0;
-        last_time = now;
+          //Report back to the main process once per second
+          if (now - last_time >= 1000) {
+            ipcRenderer.send('update-fps', frame_count);
+            frame_count = 0;
+            last_time = now;
+          }
+
+          //Keep the loop going
+          requestAnimationFrame(trackFPS);
+        }
+
+        //Start the counter
+        trackFPS();
       }
-
-      //Keep the loop going
-      requestAnimationFrame(trackFPS);
-    }
-
-    //Start the counter
-    trackFPS();
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>
