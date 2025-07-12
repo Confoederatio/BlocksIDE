@@ -1,0 +1,29 @@
+/* -- Topbar styling -- */
+.topbar {
+  background-color: rgba(32, 32, 32, 1);
+  color: rgba(220, 220, 220, 1);
+  height: 2rem;
+  font-family: "Karla";
+  font-weight: 300;
+
+  .tab {
+    cursor: default;
+    display: inline-block;
+    line-height: 2rem;
+    margin-right: -0.25rem;
+    min-height: 2rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    position: relative;
+    transition: all 0.5s ease;
+    vertical-align: middle;
+
+    user-select: none;
+  }
+  .tab:hover {
+    background-color: rgba(50, 50, 50, 1);
+  }
+  .tab.active {
+
+  }
+}

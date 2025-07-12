@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './left_pane/Header.jsx'
+//import Header from './left_pane/Header.jsx'
 import LeftPane from "./left_pane/LeftPane";
 import RightPane from "./right_pane/RightPane";
 import SplitPane from "react-split-pane";
@@ -63,7 +63,9 @@ class ScriptManagerEditor extends Component {
           overflow: "hidden"
         }}
       >
-        <Header toggleSplitScreen = {this.toggleSplitScreen} />
+        {
+          //<Header toggleSplitScreen = {this.toggleSplitScreen} />
+        }
         <div style={{
           overflow: "hidden"
         }}>
