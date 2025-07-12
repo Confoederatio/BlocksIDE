@@ -33,6 +33,13 @@ global.ve = {
 			this.element = document.createElement("div");
 			this.name = (options.name) ? options.name : "New Window";
 			this.window_id = (options.id) ? options.id : generateRandomID(ve.windows);
+			this.x = returnSafeNumber(options.x);
+			this.y = returnSafeNumber(options.y);
+
+			if (this.x != 0 || this.y != 0) setTimeout((e) => {
+				this.element.style.left = `${this.x}px`;
+				this.element.style.top = `${this.y}px`;
+			}, 0);
 
 			//Instantiate window element in ve.window_overlay_el
 			this.element.setAttribute("class", "ve-window ve-dark");
@@ -52,7 +59,9 @@ global.ve = {
 
 			//Instantiate element handlers
 			if (options.draggable)
-				elementDragHandler(this.element, { is_resizable: (options.resizeable) });
+				elementDragHandler(this.element, {
+					is_resizable: (options.resizeable)
+				});
 			if (options.can_close) {
 				var close_button = document.createElement("img");
 				close_button.id = "close-button";

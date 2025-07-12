@@ -77,6 +77,8 @@
 			can_rename: false,
 			id: "settings-ui",
 			name: "Settings",
+			x: 100,
+			y: 200,
 
 			page_menu: {
 				pages: {
