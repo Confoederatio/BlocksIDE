@@ -32,11 +32,12 @@ global.ve = {
 			//Declare local instance variables
 			this.element = document.createElement("div");
 			this.name = (options.name) ? options.name : "New Window";
-			this.window_id = generateRandomID(ve.windows);
+			this.window_id = (options.id) ? options.id : generateRandomID(ve.windows);
 
 			//Instantiate window element in ve.window_overlay_el
 			this.element.setAttribute("class", "ve-window ve-dark");
 			this.element.setAttribute("data-window-id", this.window_id);
+			this.element.id = this.window_id;
 			this.element.innerHTML = `
 				<div class = "window-header header" id = "window-header">
 					<span id = "window-name"${(options.can_rename) ? ` contenteditable = "plaintext-only"` : ""}>${this.name}</span>

@@ -1,6 +1,8 @@
 //Initialise functions
 {
 	function openSettingsWindow () {
+		if (document.querySelector(`[data-window-id="settings-ui"]`)) return; //Internal guard clause for settings-ui
+
 		//Declare local instance variables
 		var codemirror_themes = {
 			"3024-day": "3024-day",
@@ -73,6 +75,7 @@
 
 		window.settings_ui = new ve.Window({
 			can_rename: false,
+			id: "settings-ui",
 			name: "Settings",
 
 			page_menu: {
@@ -95,8 +98,8 @@
 								window.editor.toggleSplitScreen();
 							}
 						},
-						theme: {
-							id: "theme",
+						codemirror_theme: {
+							id: "codemirror_theme",
 							name: "Codemirror Theme:",
 							type: "select",
 
@@ -116,6 +119,27 @@
 									select_el.value = window.editor.main.theme;
 								} else {
 									select_el.value = "tomorrow-night-eighties";
+								}
+							}
+						},
+						general_theme: {
+							id: "general_theme",
+							name: "Theme (General):",
+							type: "select",
+
+							options: {
+								"dark": "Dark",
+								"light": "Light"
+							},
+							onload: function (e) {
+								//Declare local instance variables
+								var select_el = e.querySelector(`.select-menu`);
+
+								//Set placeholder
+								if (window.editor.main.general_theme) {
+									select_el.value = window.editor.main.general_theme;
+								} else {
+									select_el.value = "dark";
 								}
 							}
 						}
