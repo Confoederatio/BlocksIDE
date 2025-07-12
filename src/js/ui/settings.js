@@ -86,7 +86,18 @@
 						name: "File"
 					},
 					settings: {
-						name: "Settings"
+						name: "Settings",
+
+						load_settings: {
+							id: "load_settings",
+							name: "Load Settings",
+							type: "button"
+						},
+						save_settings: {
+							id: "save_settings",
+							name: "Save Settings",
+							type: "button"
+						}
 					},
 					view: {
 						name: "View",
@@ -149,6 +160,11 @@
 					run: {
 						name: "Run",
 
+						run_project: {
+							id: "button",
+							name: "Run Current Project",
+							type: "button"
+						},
 						disable_run: {
 							id: "disable_run",
 							type: "checkbox",
