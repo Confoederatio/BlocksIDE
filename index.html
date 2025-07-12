@@ -38,8 +38,11 @@
         <div class = "dropdown-menu">
           <div class = "dropdown-item">Display File Explorer</div>
           <div class = "dropdown-item" id = "split-screen-button">Split Screen</div>
-          <div class = "dropdown-item">Theme</div>
+          <div class = "dropdown-item" onclick = "openSettingsWindow();">Theme</div>
         </div>
+      </div>
+      <div class = "tab" id = "run-topbar">
+        <span class = "title"><u>R</u>un</span>
       </div>
     </div>
     <div id = "react-blockside" class = "react-blockside">
@@ -51,6 +54,7 @@
 
     <!-- Import Scriptly -->
     <script type = "text/javascript" src = "./src/js/toolbar.js"></script>
+    <script type = "text/javascript" src = "./src/js/ui/settings.js"></script>
 
     <!-- KEEP AT BOTTOM -->
     <script type = "text/javascript" src = "./src/js/startup.js"></script>

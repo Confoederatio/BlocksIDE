@@ -69,7 +69,7 @@ class LeftPane extends Component {
     return (
       <div className = {`left-pane ${this.props.view_mode} data-selected-${this.state.selected_index}`}>
         {/* Control the selected tab index directly from our state */}
-        <Tabs selectedIndex = {this.state.selected_index} onSelect = {this.handleTabSelect}>
+        <Tabs forceRenderTabPanel = {true} selectedIndex = {this.state.selected_index} onSelect = {this.handleTabSelect}>
           <TabList>
             <Tab>Block Editor</Tab>
             <Tab>Debugger</Tab>

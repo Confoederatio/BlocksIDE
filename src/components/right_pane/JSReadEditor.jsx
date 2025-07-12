@@ -7,19 +7,26 @@ import CodeMirror from 'react-codemirror';
 class JSReadEditor extends Component {
   constructor () {
     super();
+
+    //Declare local instance variables
     this.state = {
       code: window.main.blockly_code,
-      theme: "tomorrow-night-bright"
+      theme: (window.main.theme) ? window.main.theme : "tomorrow-night-bright"
     };
   }
+
   componentDidMount () {
     window.main.JSReadEditor = this.editor.codeMirror;
+    window.main.JSReadEditorInstance = this;
+    window.main.JSReadEditors.push(this);
   }
+
   render () {
     var options = {
       lineNumbers: true,
       mode: "javascript",
-      readOnly: true
+      readOnly: true,
+      theme: this.state.theme
     };
 
     //Return statement
@@ -30,8 +37,8 @@ class JSReadEditor extends Component {
         display: "flex",
         padding: "0px"
       }}>
-        <CodeMirror ref = {ref => this.editor = ref} value={this.state.code}
-        options={options}/>
+        <CodeMirror ref = {ref => this.editor = ref} value = {this.state.code}
+        options = {options}/>
       </div>
     );
   }

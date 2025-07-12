@@ -56,4 +56,11 @@ global.path = require("path");
 
 	initialiseToolbar();
 	initialiseToolbarKeybinds();
+
+	var initialise_ve_loop = setInterval(function(){
+		try {
+			ve.initialise();
+			clearInterval(initialise_ve_loop);
+		} catch (e) {}
+	}, 100);
 }

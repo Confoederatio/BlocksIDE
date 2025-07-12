@@ -166,9 +166,19 @@ function initialiseBindings () {
     return window.main.code;
   };
 
-  window.setTheme = function () {
-    window.main.JSReadEditors[0].setTheme('default');
-    window.main.JSWriteEditors[0].setTheme('default');
+  window.setTheme = function (arg0_theme) {
+    //Convert from parameters
+    var theme = arg0_theme;
+
+    //Set editor themes
+    window.main.theme = theme;
+
+    try {
+      window.main.JSReadEditors[0].setTheme(theme);
+    } catch (e) {}
+    try {
+      window.main.JSWriteEditors[0].setTheme(theme);
+    } catch (e) {}
   };
 
   window.synchroniseEditors = function () {

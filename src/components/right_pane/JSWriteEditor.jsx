@@ -9,11 +9,12 @@ import { parseCode } from '../../lib/js2blocks.js';
 class JSWriteEditor extends Component {
   constructor() {
     super();
+    console.log("Constructor called.");
 
     //Declare local instance variables
     this.state = {
       code: window.main.code,
-      theme: "tomorrow-night-bright"
+      theme: (window.main.theme) ? window.main.theme : "tomorrow-night-bright"
     };
   }
 
@@ -31,7 +32,7 @@ class JSWriteEditor extends Component {
     console.log(`JSWriteEditor: componentDidMount()`);
   }
 
-  render() {
+  render () {
     var options = {
       lineNumbers: true,
       mode: "javascript",
@@ -55,10 +56,13 @@ class JSWriteEditor extends Component {
     var theme = arg0_theme;
 
     //Set state
-    this.setState({ theme: theme });
+    this.setState({ theme: theme }, (e) => {
+      this.render();
+      console.log(`this.render()`, this.state);
+    });
   }
 
-  updateCode(newCode) {
+  updateCode (newCode) {
     this.state.code = newCode;
     window.main.code = newCode
 

@@ -41,14 +41,8 @@
 				if (editor.isSplitScreen())
 					split_screen_button_el.classList.add("active");
 				split_screen_button_el.onclick = function (e) {
-					editor.toggleSplitScreen();
 					closeAllToolbarTabs();
-
-					if (split_screen_button_el.classList.contains("active")) {
-						split_screen_button_el.classList.remove("active");
-					} else {
-						split_screen_button_el.classList.add("active");
-					}
+					toggleSplitScreen();
 				};
 		}, 100);
 	}
@@ -84,5 +78,19 @@
 				}
 			}
 		});
+	}
+
+	function toggleSplitScreen () {
+		//Declare local instance variables
+		var split_screen_button_el = document.getElementById("split-screen-button");
+
+		//Toggle split screen
+		editor.toggleSplitScreen();
+
+		if (split_screen_button_el.classList.contains("active")) {
+			split_screen_button_el.classList.remove("active");
+		} else {
+			split_screen_button_el.classList.add("active");
+		}
 	}
 }

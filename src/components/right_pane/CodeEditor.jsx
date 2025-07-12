@@ -24,7 +24,7 @@ class CodeEditor extends Component {
 
   render() {
     return (
-      <Tabs onSelect = {this.handleSelect.bind(this)}>
+      <Tabs forceRenderTabPanel = {true} onSelect = {this.handleSelect.bind(this)}>
         <TabList>
           <Tab>JS Editor</Tab>
           <Tab>JS Generated (Read-only)</Tab>
