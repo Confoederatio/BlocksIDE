@@ -161,6 +161,11 @@ function initialiseBindings () {
     return window.main.code;
   };
 
+  window.setTheme = function () {
+    window.main.JSReadEditors[0].setTheme('default');
+    window.main.JSWriteEditors[0].setTheme('default');
+  };
+
   window.synchroniseEditors = function () {
     window.main.code = window.main.blockly_code;
     window.main.JSWriteEditor.setValue(window.main.code);
