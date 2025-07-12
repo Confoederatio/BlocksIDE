@@ -53,4 +53,7 @@ global.path = require("path");
 
 	initialiseGlobal();
 	trackPerformance();
+
+	initialiseToolbar();
+	initialiseToolbarKeybinds();
 }

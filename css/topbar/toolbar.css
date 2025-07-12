@@ -7,11 +7,12 @@
   font-weight: 300;
 
   .tab {
+    border-radius: 4px;
     cursor: default;
     display: inline-block;
-    line-height: 2rem;
+    line-height: 1.8rem;
     margin-right: -0.25rem;
-    min-height: 2rem;
+    min-height: 1.8rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     position: relative;
@@ -19,11 +20,48 @@
     vertical-align: middle;
 
     user-select: none;
+
+    .dropdown-menu {
+      display: none; /* Hidden by default */
+      position: absolute;
+
+      background-color: rgba(32, 32, 32, 1);
+      border: 3px solid rgb(50, 50, 50);
+      border-radius: 4px;
+      left: 0px;
+      list-style: none;
+      top: 2rem;
+      width: 100%;
+      z-index: 1;
+    }
   }
   .tab:hover {
     background-color: rgba(50, 50, 50, 1);
   }
-  .tab.active {
 
+  .tab.active {
+    background-color: rgb(160, 50, 50);
+
+    .dropdown-menu {
+      display: block;
+      min-width: 10.5rem;
+
+      .dropdown-item {
+        border-radius: 4px;
+        height: 1.75rem;
+        line-height: 1.75rem;
+        margin-top: 2px;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        transition: all 0.5s ease;
+      }
+      .dropdown-item:hover {
+        background-color: rgb(160, 50, 50);
+      }
+
+      .dropdown-item.active {
+        background-color: rgb(140, 50, 50);
+      }
+    }
   }
 }

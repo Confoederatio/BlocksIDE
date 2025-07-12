@@ -111,6 +111,11 @@ class App extends Component {
 //Initialise binding functions
 function initialiseBindings () {
   //Initialise functions
+  window.isSplitScreen = function () {
+    //Return statement
+    return window.main.ScriptManagerEditor.state.view_mode;
+  };
+
   window.openJS = function (event) {
     var input = event.target;
     console.log("open "+input.files[0]);

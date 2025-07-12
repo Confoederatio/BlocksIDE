@@ -18,9 +18,29 @@
   </head>
   <body>
     <div id = "topbar" class = "topbar">
-      <div class = "tab"><u>F</u>ile</div>
-      <div class = "tab"><u>S</u>ettings</div>
-      <div class = "tab"><u>V</u>iew</div>
+      <div class = "tab" id = "file-topbar">
+        <span class = "title"><u>F</u>ile</span>
+        <div class = "dropdown-menu">
+          <div class = "dropdown-item">New Project</div>
+          <div class = "dropdown-item">Open Project</div>
+          <div class = "dropdown-item">Exit</div>
+        </div>
+      </div>
+      <div class = "tab" id = "settings-topbar">
+        <span class = "title"><u>S</u>ettings</span>
+        <div class = "dropdown-menu">
+          <div class = "dropdown-item">Default Settings</div>
+          <div class = "dropdown-item">Keybindings</div>
+        </div>
+      </div>
+      <div class = "tab" id = "view-topbar">
+        <span class = "title"><u>V</u>iew</span>
+        <div class = "dropdown-menu">
+          <div class = "dropdown-item">Display File Explorer</div>
+          <div class = "dropdown-item" id = "split-screen-button">Split Screen</div>
+          <div class = "dropdown-item">Theme</div>
+        </div>
+      </div>
     </div>
     <div id = "react-blockside" class = "react-blockside">
       <iframe src = "./build/index.html"></iframe>
@@ -30,6 +50,8 @@
     <script src = "./UF/js/files/file_manager.js" type = "text/javascript"></script>
 
     <!-- Import Scriptly -->
+    <script type = "text/javascript" src = "./src/js/toolbar.js"></script>
+
     <!-- KEEP AT BOTTOM -->
     <script type = "text/javascript" src = "./src/js/startup.js"></script>
   </body>
