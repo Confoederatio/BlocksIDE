@@ -17,7 +17,7 @@ class JSWriteEditor extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     var has_instance = false;
     window.main.JSWriteEditor = this.editor.codeMirror;
     window.main.JSWriteEditorInstance = this;

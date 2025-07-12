@@ -9,6 +9,7 @@ class JSReadEditor extends Component {
     super();
     this.state = {
       code: window.main.blockly_code,
+      theme: "tomorrow-night-bright"
     };
   }
   componentDidMount () {
@@ -33,6 +34,14 @@ class JSReadEditor extends Component {
         options={options}/>
       </div>
     );
+  }
+
+  setTheme (arg0_theme) {
+    //Convert from parameters
+    var theme = arg0_theme;
+
+    //Set state
+    this.setState({ theme: theme });
   }
 
   updateCode (arg0_new_code) {

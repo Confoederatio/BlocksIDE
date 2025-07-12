@@ -1,3 +1,8 @@
+//Import modules
+global.child_process = require("child_process");
+global.fs = require("fs");
+global.path = require("path");
+
 //Initialise functions
 {
 	function initialiseGlobal () {
@@ -14,7 +19,7 @@
 
 		function trackFPS() {
 			frame_count++;
-			const now = performance.now();
+			var now = performance.now();
 
 			//Report back to the main process once per second
 			if (now - last_time >= 1000) {
@@ -34,6 +39,18 @@
 
 //Startup process
 {
+	//Load config
+	{
+		global.load_order = {
+			load_directories: [
+				"UF"
+			],
+			load_files: []
+		};
+
+		loadAllScripts();
+	}
+
 	initialiseGlobal();
 	trackPerformance();
 }
