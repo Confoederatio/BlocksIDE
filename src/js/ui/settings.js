@@ -1,6 +1,9 @@
 //Initialise functions
 {
-	function openSettingsWindow () {
+	function openSettingsWindow (arg0_options) {
+		//Convert from parameters
+		var options = (arg0_options) ? arg0_options : {};
+
 		if (document.querySelector(`[data-window-id="settings-ui"]`)) return; //Internal guard clause for settings-ui
 
 		//Declare local instance variables
@@ -81,6 +84,7 @@
 			y: 200,
 
 			page_menu: {
+				default: (options.default_page) ? options.default_page : "file",
 				pages: {
 					file: {
 						name: "File"

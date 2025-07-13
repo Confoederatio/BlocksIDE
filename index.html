@@ -29,8 +29,9 @@
       <div class = "tab" id = "settings-topbar">
         <span class = "title"><u>S</u>ettings</span>
         <div class = "dropdown-menu">
-          <div class = "dropdown-item">Default Settings</div>
-          <div class = "dropdown-item">Keybindings</div>
+          <div class = "dropdown-item" onclick = "openSettingsWindow({ default_page: 'settings' })">Default Settings</div>
+          <!-- Move this to a separate openKeybindsWindow() function later -->
+          <div class = "dropdown-item" onclick = "openSettingsWindow({ default_page: 'settings' })">Keybindings</div>
         </div>
       </div>
       <div class = "tab" id = "view-topbar">
@@ -38,7 +39,7 @@
         <div class = "dropdown-menu">
           <div class = "dropdown-item">Display File Explorer</div>
           <div class = "dropdown-item" id = "split-screen-button">Split Screen</div>
-          <div class = "dropdown-item" onclick = "openSettingsWindow();">Theme</div>
+          <div class = "dropdown-item" onclick = "openSettingsWindow({ default_page: 'view' });">Theme</div>
         </div>
       </div>
       <div class = "tab" id = "run-topbar">
