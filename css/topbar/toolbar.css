@@ -35,11 +35,11 @@
       z-index: 1;
     }
   }
-  .tab:hover {
+  .tab:not(.disabled):hover {
     background-color: rgba(50, 50, 50, 1);
   }
 
-  .tab.active {
+  .tab:not(.disabled).active {
     background-color: rgb(160, 50, 50);
 
     .dropdown-menu {
@@ -55,7 +55,7 @@
         padding-right: 0.75rem;
         transition: all 0.5s ease;
       }
-      .dropdown-item:hover {
+      .dropdown-item:not(.disabled):hover {
         background-color: rgb(160, 50, 50);
       }
 
@@ -63,6 +63,9 @@
         background-color: rgb(140, 50, 50);
       }
     }
+  }
+  .disabled {
+    opacity: 0.5;
   }
 }
 
