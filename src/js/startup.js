@@ -8,6 +8,10 @@ global.path = require("path");
 	function initialiseGlobal () {
 		//Declare global variables
 		window.editor = document.querySelector("#react-blockside iframe").contentWindow;
+		window.main = {
+			hierarchies: {},
+			selected_folder: `./test/`
+		};
 	}
 
 	function trackPerformance () {
@@ -61,6 +65,9 @@ global.path = require("path");
 		try {
 			ve.initialise();
 			clearInterval(initialise_ve_loop);
+
+			//Initialise UIs reliant on Vercengen
+			initialiseFileExplorer();
 		} catch (e) {}
 	}, 100);
 }

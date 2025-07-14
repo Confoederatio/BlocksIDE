@@ -816,7 +816,7 @@
         }
       } else if (target.className == "entity" && dragged_type == "entity" && placeholder.parentNode) {
         dragged.parentNode.removeChild(dragged);
-        placehodler.parentNode.replaceChild(dragged, placeholder);
+        placeholder.parentNode.replaceChild(dragged, placeholder);
       } else if (target.className == "hierarchy") {
         dragged.parentNode.removeChild(dragged);
 
