@@ -87,7 +87,21 @@
 				default: (options.default_page) ? options.default_page : "file",
 				pages: {
 					file: {
-						name: "File"
+						name: "File",
+
+						open_file: {
+							id: "open_file",
+							name: "Open File",
+							type: "basic_file",
+							onclick: (e) => {
+								//Declare local instance variables
+								var local_file = e.target.files[0];
+								var local_file_content = fs.readFileSync(local_file.path, "utf8");
+
+								//Load local_file_content
+								editor.openJSString(local_file_content);
+							}
+						}
 					},
 					settings: {
 						name: "Settings",
@@ -95,12 +109,22 @@
 						load_settings: {
 							id: "load_settings",
 							name: "Load Settings",
-							type: "button"
+							type: "basic_file",
+							onclick: (e) => {
+								//Declare local instance variables
+								var local_file = e.target.files[0];
+
+								console.log(local_file);
+							}
 						},
 						save_settings: {
 							id: "save_settings",
 							name: "Save Settings",
-							type: "button"
+							type: "basic_file",
+							is_save: true,
+							onclick: (e) => {
+								console.log(e);
+							}
 						}
 					},
 					view: {

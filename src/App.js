@@ -133,6 +133,21 @@ function initialiseBindings () {
     return window.main.code;
   };
 
+  window.openJSString = function (arg0_code) {
+    //Convert from parameters
+    var code = arg0_code;
+
+    //Load code
+    window.main.code = code;
+    window.main.JSWriteEditor.setValue(code);
+
+    parseCode(code);
+    window.main.code_prev = window.main.code;
+
+    //Return statement
+    return window.main.code;
+  };
+
   window.runJS = function () {
     try {
       window.debugger.clear();
