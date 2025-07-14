@@ -14,6 +14,7 @@ class JSWriteEditor extends Component {
     //Declare local instance variables
     this.state = {
       code: window.main.code,
+      height: `calc(100vh)`,
       theme: (window.main.theme) ? window.main.theme : "tomorrow-night-bright"
     };
   }
@@ -33,15 +34,22 @@ class JSWriteEditor extends Component {
   }
 
   render () {
+    //Declare local instance variables
     var options = {
       lineNumbers: true,
       mode: "javascript",
       theme: this.state.theme
     };
 
+    //Post-return handler
+    setTimeout(() => {
+      this.setHeight(window.getActualViewportHeight());
+    }, 1);
+
+    //Return statement
     return (
       <div className = "js-write-editor" style = {{
-        height: "calc(100vh)",
+        height: this.state.height,
         width: "100%",
         display: "flex",
         padding: "0px"
@@ -49,6 +57,16 @@ class JSWriteEditor extends Component {
         <CodeMirror ref={ref => this.editor = ref} value = {window.main.code} onChange={this.updateCode.bind(this)} options={options} />
       </div>
     );
+  }
+
+  setHeight (arg0_height) {
+    //Convert from parameters
+    var height = arg0_height;
+
+    //Set state
+    this.setState({ height: height }, (e) => {
+      this.render();
+    });
   }
 
   setTheme (arg0_theme) {

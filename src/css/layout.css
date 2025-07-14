@@ -1,6 +1,7 @@
 /* -- Global Layout -- */
 #root {
     height: calc(100%);
+    overflow-y: clip;
 }
 .Pane.vertical.Pane1:has(.left-pane.unified) {
     width: 100dvw !important;

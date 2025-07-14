@@ -60,14 +60,14 @@ class ScriptManagerEditor extends Component {
           height: "100%", // Full viewport height
           display: "flex",
           flexDirection: "column", // Stack Header and SplitPane vertically
-          overflow: "hidden"
+          overflow: "clip"
         }}
       >
         {
           //<Header toggleSplitScreen = {this.toggleSplitScreen} />
         }
-        <div style={{
-          overflow: "hidden"
+        <div style = {{
+          overflow: "clip"
         }}>
           <SplitPane
             onChange = {this.resize}
@@ -75,6 +75,9 @@ class ScriptManagerEditor extends Component {
             defaultSize = "50%" //Default to 50% width for the left pane
             minSize = {250} //Minimum size for the left pane
             maxSize = {-16} //This might need adjustment (see explanation below)
+            style = {{
+              overflow: "clip"
+            }}
           >
             <LeftPane style={{ height: "100%", overflow: "hidden"}} {...view_props} />
             <RightPane style={{ height: "100%", overflow: "hidden"}} {...view_props} />

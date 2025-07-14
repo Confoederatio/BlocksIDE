@@ -70,7 +70,7 @@ class Blockly extends Component {
     var onresize = (e) => {
       blockly_el.style.left = '0px' // x + 'px';
       blockly_el.style.width = "100%"
-      blockly_el.style.height = "calc(100% - " + document.querySelector(`.react-tabs`).offsetHeight + "px)";
+      blockly_el.style.height = "calc(100% - " + document.querySelector(`.react-tabs`).offsetHeight + "px - 11px)";
       window.Blockly.svgResize(this.workspace);
 
       fixFlyoutScaling();

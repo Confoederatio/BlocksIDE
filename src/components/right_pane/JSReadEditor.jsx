@@ -11,6 +11,7 @@ class JSReadEditor extends Component {
     //Declare local instance variables
     this.state = {
       code: window.main.blockly_code,
+      height: `calc(100vh)`,
       theme: (window.main.theme) ? window.main.theme : "tomorrow-night-bright"
     };
   }
@@ -29,10 +30,15 @@ class JSReadEditor extends Component {
       theme: this.state.theme
     };
 
+    //Post-return handler
+    setTimeout(() => {
+      this.setHeight(window.getActualViewportHeight());
+    }, 1);
+
     //Return statement
     return (
       <div className = "js-read-editor" style = {{
-        height: "calc(100vh)",
+        height: this.state.height,
         width: "100%",
         display: "flex",
         padding: "0px"
@@ -41,6 +47,16 @@ class JSReadEditor extends Component {
         options = {options}/>
       </div>
     );
+  }
+
+  setHeight (arg0_height) {
+    //Convert from parameters
+    var height = arg0_height;
+
+    //Set state
+    this.setState({ height: height }, (e) => {
+      this.render();
+    });
   }
 
   setTheme (arg0_theme) {

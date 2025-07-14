@@ -111,6 +111,14 @@ class App extends Component {
 //Initialise binding functions
 function initialiseBindings () {
   //Initialise functions
+  window.getActualViewportHeight = function () {
+    //Declare local instance variables
+    var react_tabs_el = document.querySelector(`.react-tabs`);
+
+    //Return statement
+    return `calc(100vh - ${react_tabs_el.offsetHeight}px - 11px)`; //11px is from .Resizer being 11px
+  };
+
   window.isSplitScreen = function () {
     //Return statement
     return window.main.ScriptManagerEditor.state.view_mode;
@@ -137,9 +145,11 @@ function initialiseBindings () {
     //Convert from parameters
     var code = arg0_code;
 
-    //Load code
+    //Iterate over all JSWriteEditors; load code
     window.main.code = code;
-    window.main.JSWriteEditor.setValue(code);
+
+    for (var i = 0; i < window.main.JSWriteEditors.length; i++)
+      window.main.JSWriteEditors[i].editor.codeMirror.setValue(code);
 
     parseCode(code);
     window.main.code_prev = window.main.code;
