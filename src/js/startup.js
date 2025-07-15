@@ -67,6 +67,7 @@ global.path = require("path");
 
 			//Initialise UIs reliant on Vercengen
 			initialiseFileExplorer();
+			initialiseUpdateInformation();
 		} catch (e) {}
 	}, 100);
 }

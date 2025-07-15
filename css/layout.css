@@ -1,3 +1,4 @@
+/* -- 1. Main Scene -- */
 .react-blockside {
     display: flex;
     flex: 1;
@@ -14,4 +15,18 @@
         width: 80%;
         border: none;
     }
+}
+
+/* -- 2. Bottombar -- */
+#file-information {
+    position: fixed;
+
+    bottom: 4px;
+    right: 4px;
+
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-family: "Karla";
+    font-size: 1rem;
+    font-weight: 300;
 }
