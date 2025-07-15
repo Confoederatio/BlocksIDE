@@ -46,7 +46,7 @@ global.ve = {
 			this.element.setAttribute("data-window-id", this.window_id);
 			this.element.id = this.window_id;
 			this.element.innerHTML = `
-				<div class = "window-header header" id = "window-header">
+				<div class = "window-header header${(options.headless) ? " display-none" : ""}" id = "window-header">
 					<span id = "window-name"${(options.can_rename) ? ` contenteditable = "plaintext-only"` : ""}>${this.name}</span>
 				</div>
 				<div id = "window-body"></div>

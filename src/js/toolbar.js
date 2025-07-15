@@ -51,7 +51,7 @@
 		//Declare local instance variables
 		var ctrl_toolbar_keybinds = {
 			"f": "file-topbar",
-			"s": "settings-topbar",
+			"e": "settings-topbar",
 			"v": "view-topbar"
 		};
 

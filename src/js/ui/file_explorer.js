@@ -24,8 +24,30 @@
 				//console.log(e.full_file_path, e.file_path);
 			},
 			onrename: function (e) {
-				console.log(e.full_file_path, e.file_path, e.target.value);
+				//Declare local instance variables
+				var old_file_path = e.full_file_path;
+				var new_file_path = path.join(path.dirname(e.full_file_path), e.target.value);
+
+				//Rename file
+				fs.renameSync(old_file_path, new_file_path);
 			}
 		});
+		document.querySelector(`#file-explorer`).oncontextmenu = function (e) {
+			console.log(e);
+		};
+	}
+
+	/**
+	 * printFileExplorerContextMenu() - Prints a headless file explorer context menu at the given location, bound to a specific ID.
+	 * @param {Object} [arg0_options]
+	 *  @param {String} [arg0_options.hierarchy_id="file-explorer"]
+	 *  @param {String} [arg0_options.hierarchy_selector="#file-explorer"]
+	 *  @param {number} [arg0_options.x=0]
+	 *  @param {number} [arg0_options.y=0]
+	 *
+	 * @returns {ve.Window}
+	 */
+	function printFileExplorerContextMenu (arg0_options) { //[WIP] - Finish function body
+
 	}
 }

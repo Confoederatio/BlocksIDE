@@ -122,6 +122,7 @@
 					}
 				} catch (e) {}
 			}.bind(options));
+
 			//2. Display files at bottom
 			files.forEach((file) => {
 				try {
@@ -165,6 +166,10 @@
 											e.full_file_path = local_full_path;
 
 											options.onrename(e);
+
+											//Clear hierarchy and repopulate it
+											clearHierarchy(hierarchy_id, { hierarchy_selector: container_selector });
+											populateFileExplorer(hierarchy_id, options.variable_key, undefined, options);
 										};
 
 								var load_button_el = document.createElement("button");
