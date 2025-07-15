@@ -135,4 +135,13 @@
 			}
 		});
 	}
+
+	function saveCurrentFile () {
+		if (window.current_file) {
+			editor.synchroniseEditors();
+			fs.writeFileSync(window.current_file, editor.main.code, "utf8");
+
+			console.log(`Saved currently loaded file to `, window.current_file);
+		}
+	}
 }
