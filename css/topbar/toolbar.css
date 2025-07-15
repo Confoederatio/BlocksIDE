@@ -33,6 +33,12 @@
       top: 2rem;
       width: 100%;
       z-index: 1;
+
+      hr {
+        border: 1px solid grey;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
     }
   }
   .tab:not(.disabled):hover {
