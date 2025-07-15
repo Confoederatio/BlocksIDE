@@ -29,7 +29,7 @@
     "react-scripts": "1.0.6"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --enable-logging",
     "build": "react-scripts build --verbose",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

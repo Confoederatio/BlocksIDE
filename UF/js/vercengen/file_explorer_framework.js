@@ -30,8 +30,8 @@
 				hide_add_entity: true,
 				hide_context_menus: true,
 
-				disable_delete: options.disable_delete,
-				disable_renaming: true
+				disable_delete: true,
+				disable_renaming: false
 			});
 
 			//Populate initial base saves folder upon load
@@ -144,6 +144,7 @@
 
 							if (!local_full_path.includes(main.saves_folder)) {
 								file_el.querySelector(`button.delete-button`).remove();
+								file_el.querySelector(`.item-name`).setAttribute("rename-disabled", "true");
 							} else {
 								//Add 'Load' button if possible
 								var delete_button_el = file_el.querySelector(`button.delete-button`);
@@ -153,10 +154,27 @@
 										fs.unlink(local_full_path, (err) => { if (err) console.error(err); });
 									}
 								};
+
+								var item_name_el = file_el.querySelector(`.item-name`);
+
+								if (options.onrename)
+									if (item_name_el)
+										item_name_el.onchange = function (e) {
+											//Convert from parameters
+											e.file_path = file;
+											e.full_file_path = local_full_path;
+
+											options.onrename(e);
+										};
+
 								var load_button_el = document.createElement("button");
 								load_button_el.innerText = "Load";
 								load_button_el.onclick = function (e) {
-									loadNaissanceSave(local_full_path);
+									e.file_path = file;
+									e.full_file_path = local_full_path;
+
+									if (options.onloadclick)
+										options.onloadclick(e);
 								};
 
 								//Append 'Load' before 'Delete'

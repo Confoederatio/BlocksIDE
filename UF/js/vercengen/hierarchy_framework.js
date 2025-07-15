@@ -690,7 +690,10 @@
       name_div.textContent = local_item.name;
       if (!hierarchy_options.disable_renaming)
         name_div.addEventListener("click", function (e) {
-          renameItem(hierarchy_id, e.target);
+          var is_rename_disabled = e.target.getAttribute("rename-disabled");
+
+          if (!is_rename_disabled)
+            renameItem(hierarchy_id, e.target);
         });
 
       //Create container interaction_el

@@ -9,8 +9,7 @@ global.path = require("path");
 		//Declare global variables
 		window.editor = document.querySelector("#react-blockside iframe").contentWindow;
 		window.main = {
-			hierarchies: {},
-			selected_folder: `./test/`
+			hierarchies: {}
 		};
 	}
 

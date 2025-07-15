@@ -12,6 +12,7 @@ class JSReadEditor extends Component {
     this.state = {
       code: window.main.blockly_code,
       height: `calc(100vh)`,
+      height_iterations: 0,
       theme: (window.main.theme) ? window.main.theme : "tomorrow-night-bright"
     };
   }
@@ -32,7 +33,8 @@ class JSReadEditor extends Component {
 
     //Post-return handler
     setTimeout(() => {
-      this.setHeight(window.getActualViewportHeight());
+      if (this.state.height_iterations == 0)
+        this.setHeight(window.getActualViewportHeight());
     }, 1);
 
     //Return statement
@@ -54,7 +56,10 @@ class JSReadEditor extends Component {
     var height = arg0_height;
 
     //Set state
-    this.setState({ height: height }, (e) => {
+    this.setState({
+      height: height,
+      height_iterations: this.state.height_iterations + 1
+    }, (e) => {
       this.render();
     });
   }

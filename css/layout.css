@@ -1,8 +1,17 @@
 .react-blockside {
+    display: flex;
     flex: 1;
-}
-.react-blockside iframe {
-    height: 100%;
-    width: 100%;
-    border: none;
+    min-height: 0;
+
+    .file-explorer {
+        min-height: 0;
+        max-height: 100%;
+        overflow-y: auto;
+        width: 20%;
+    }
+    iframe {
+        height: 100%;
+        width: 80%;
+        border: none;
+    }
 }
