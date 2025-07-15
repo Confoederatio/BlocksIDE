@@ -1,4 +1,4 @@
-//Initialise functions
+//Initialise functions - [WIP] - This should be refactored into some sort of class
 {
 	/*
 		createFileExplorer() - Creates a new file explorer in a given container element.
@@ -62,6 +62,10 @@
 
 		//Populate initial folder
 		try {
+			//Update current folder
+			container_el.setAttribute("data-directory", file_path);
+
+			//Read files
 			var files = fs.readdirSync(file_path);
 			var hierarchy_options = main.hierarchies[hierarchy_id];
 			var render_items = [];
