@@ -50,7 +50,7 @@
 	function populateFileExplorer (arg0_hierarchy_id, arg1_file_path, arg2_parent_group_id, arg3_options) {
 		//Convert from parameters
 		var hierarchy_id = arg0_hierarchy_id;
-		var file_path = arg1_file_path;
+		var file_path = path.join(arg1_file_path);
 		var parent_group_id = arg2_parent_group_id;
 		var options = (arg3_options) ? arg3_options : {};
 
@@ -121,7 +121,21 @@
 						if (options.saves_explorer)
 							if (!group_data.path.includes(main.saves_folder) || main.saves_folder == group_data.path) {
 								var folder_el = document.querySelector(`${container_selector} .group[data-id="${local_item_id}"]`);
+
 								folder_el.querySelector(`button.delete-button`).remove();
+							} else {
+								//Folder interaction handling
+								var folder_el = document.querySelector(`${container_selector} .group[data-id="${local_item_id}"]`);
+
+								var delete_button_el = folder_el.querySelector(`button.delete-button`);
+								delete_button_el.onclick = function (e) {
+									if (window.confirm(`Are you sure you wish to delete the folder ${local_full_path}?`)) {
+										folder_el.remove();
+										fs.rm(local_full_path, function (e) {
+											console.log(`Removing folder:`, e);
+										});
+									}
+								};
 							}
 					}
 				} catch (e) {}
@@ -154,6 +168,7 @@
 								//Add 'Load' button if possible
 								var delete_button_el = file_el.querySelector(`button.delete-button`);
 								delete_button_el.onclick = function (e) {
+									console.log(e);
 									if (window.confirm(`Are you sure you wish to delete ${local_full_path}?`)) {
 										file_el.remove();
 										fs.unlink(local_full_path, (err) => { if (err) console.error(err); });
@@ -168,8 +183,6 @@
 											//Convert from parameters
 											e.file_path = file;
 											e.full_file_path = local_full_path;
-
-											options.onrename(e);
 
 											//Clear hierarchy and repopulate it
 											clearHierarchy(hierarchy_id, { hierarchy_selector: container_selector });
@@ -202,6 +215,9 @@
 				let local_folder_el = all_folder_els[i];
 
 				local_folder_el.onclick = function (e) {
+					//Guard clause if it is a proper button
+					if (e.target.className.includes("-button")) return;
+
 					var local_file_name_el = local_folder_el.querySelector(".item-name");
 					var local_file_path = `${options.variable_key}\\${local_file_name_el.innerText}`;
 					var local_type = local_folder_el.getAttribute("class");
