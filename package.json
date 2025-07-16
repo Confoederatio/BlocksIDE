@@ -1,7 +1,7 @@
 {
   "name": "Scriptly",
   "author": "Confoederatio CTD; Juan Carlos Orozco",
-  "version": "0.7b",
+  "version": "0.71b",
   "homepage": ".",
   "main": "main.js",
   "private": true,

@@ -3,7 +3,7 @@ var path = require("path");
 var { performance } = require("perf_hooks");
 
 var latest_fps = 0;
-var scriptly_version = "0.7b";
+var scriptly_version = "0.71b";
 var title_update_interval;
 var win;
 
