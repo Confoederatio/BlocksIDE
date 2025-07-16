@@ -21,7 +21,9 @@
       <div class = "tab" id = "file-topbar">
         <span class = "title"><u>F</u>ile</span>
         <div class = "dropdown-menu">
-          <div class = "dropdown-item disabled">New Project</div>
+          <div class = "dropdown-item" onclick = "window.printNewProjectContextMenu({
+            is_create_new_project: true, x: 100, y: 200
+          })">New Project</div>
           <div class = "dropdown-item" onclick = "window.printOpenProjectContextMenu();">Open Project</div>
           <div class = "dropdown-item" onclick = "window.saveCurrentFile();">Save File (Ctrl + <span>S</span>)</div>
           <div class = "dropdown-item" onclick = "window.close();">Exit</div>
